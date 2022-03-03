@@ -47,6 +47,11 @@ public class MainWindow extends JFrame
 	private JPanel centerPanel;
 	
 	/**
+	 * South panel.
+	 */
+	private JPanel southPanel;
+	
+	/**
 	 * Flights tab button.
 	 */
 	private JButton flightsButton;
@@ -83,6 +88,9 @@ public class MainWindow extends JFrame
 		
 		centerPanel = createCenterPanel();
 		add(centerPanel, BorderLayout.CENTER);
+		
+		southPanel = createSouthPanel();
+		add(southPanel, BorderLayout.SOUTH);
 	}
 	
 	/**
@@ -96,6 +104,22 @@ public class MainWindow extends JFrame
 		panel.setLayout(new BorderLayout());
 			
 		JPanel tabPanel = createTabPanel();
+		panel.add(tabPanel, BorderLayout.SOUTH);
+		
+		return panel;
+	}
+	
+	/**
+	 * Creates the south panel.
+	 * @return JPanel that goes in north.
+	 */
+	private JPanel createSouthPanel() 
+	{
+		JPanel panel = new JPanel();
+		
+		panel.setLayout(new BorderLayout());
+			
+		JPanel tabPanel = createSearchPanel();
 		panel.add(tabPanel, BorderLayout.SOUTH);
 		
 		return panel;
@@ -132,6 +156,27 @@ public class MainWindow extends JFrame
 		JPanel tabPanel = new JPanel();
 		
 		tabPanel.setLayout(new GridLayout(1, 2));
+		
+		flightsButton = new JButton("Flights");
+		reservationsButton = new JButton("Reservations");
+		
+		flightsButton.addActionListener(new TabButtonActionListener());
+		reservationsButton.addActionListener(new TabButtonActionListener());
+		
+		tabPanel.add(flightsButton);
+		tabPanel.add(reservationsButton);
+		
+		return tabPanel;
+	}
+	
+	/**
+	 * Creates the tab buttons.
+	 * @return JPanel containing tab buttons.
+	 */
+	private JPanel createSearchPanel() {
+		JPanel tabPanel = new JPanel();
+		
+		tabPanel.setLayout(new GridLayout(3, 2));
 		
 		flightsButton = new JButton("Flights");
 		reservationsButton = new JButton("Reservations");
