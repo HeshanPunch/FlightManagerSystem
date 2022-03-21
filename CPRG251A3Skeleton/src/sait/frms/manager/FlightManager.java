@@ -1,30 +1,49 @@
 package sait.frms.manager;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 import sait.frms.problemdomain.Flight;
 
-public class FlightManager extends Flight {
+public class FlightManager {
+	public final String WEEKDAY_ANY = "Any";// not sure if this is what the class diagram means
+	public final String WEEKDAY_SUNDAY = "Sunday";
+	public final String WEEKDAY_MONDAY = "Monday";
+	public final String WEEKDAY_TUESDAY = "Tuesday";
+	public final String WEEKDAY_WEDNESDAY = "Wednesday";
+	public final String WEEKDAY_THURSDAY = "Thursday";
+	public final String WEEKDAY_FRIDAY = "Friday";
+	public final String WEEKDAY_SATURDAY = "Saturday";
+
 	ArrayList<Flight> flights = new ArrayList<Flight>();
-	ArrayList<String> airports = new ArrayList<String>(2);
+	ArrayList<String> airports = new ArrayList<String>();
 	final static String FLIGHT_PATH = "res/flights.csv";
 	final static String AIRPORT_PATH = "res/airports.csv";
+
+//run the rest of the methods
+	public FlightManager() throws IOException {
+		populateFlights();
+		populateAirports();
+
+	}
 
 	public void populateFlights() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(FLIGHT_PATH));
 		while (in.hasNext()) {
 			String line = in.nextLine();
 			String[] fields = line.split(",");
-			flights.add(new Flight(fields[0], fields[1], fields[2], fields[3], fields[4],
-						Integer.parseInt(fields[5]), Double.parseDouble(fields[6])));
-		
+			String[] codeAirline = fields[0].split("-");
+			flights.add(new Flight(codeAirline[1], codeAirline[0], fields[1], fields[2], fields[3], fields[4],
+					Integer.parseInt(fields[5]), Double.parseDouble(fields[6])));
+
 		}
+
 		in.close();
-		System.out.println(flights.toString());
+		
+		//for testing
+		for (Flight f: flights) {
+			System.out.println(f);
+		}
 	}
 
 	public void populateAirports() throws FileNotFoundException {
@@ -38,7 +57,13 @@ public class FlightManager extends Flight {
 
 		}
 		in.close();
-		System.out.println(airports);
+		
+		//for testing
+		//System.out.println(airports);
+		for (String s: airports) {
+			System.out.println(s);
+		}
+		
 	}
 
 }

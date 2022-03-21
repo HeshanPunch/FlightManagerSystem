@@ -1,14 +1,12 @@
 package sait.frms.problemdomain;
 
-import java.nio.charset.CoderMalfunctionError;
-
 public class Flight {
 	private String code;
-	private String airlineName;
+	private String airlineNameString;
 	private String from;
 	private String to;
 	private String weekday;
-	private String time;
+	private String timeString;
 	private int seats;
 	private double costPerSeat;
 
@@ -17,28 +15,15 @@ public class Flight {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Flight(String code, String from, String to, String weekday, String timeString, int seats,
-			double costPerSeat) {
-		super();
-		this.code = code;
-		// this.airlineNameString = airlineNameString;
-		this.from = from;
-		this.to = to;
-		this.weekday = weekday;
-		this.time = timeString;
-		this.seats = seats;
-		this.costPerSeat = costPerSeat;
-	}
-
 	public Flight(String code, String airlineNameString, String from, String to, String weekday, String timeString,
 			int seats, double costPerSeat) {
 		super();
 		this.code = code;
-		this.airlineName = airlineNameString;
+		this.airlineNameString = airlineNameString;
 		this.from = from;
 		this.to = to;
 		this.weekday = weekday;
-		this.time = timeString;
+		this.timeString = timeString;
 		this.seats = seats;
 		this.costPerSeat = costPerSeat;
 	}
@@ -51,12 +36,12 @@ public class Flight {
 		this.code = code;
 	}
 
-	public String getAirlineName() {
-		return airlineName;
+	public String getAirlineNameString() {
+		return airlineNameString;
 	}
 
-	public void setAirlineNameString(String airlineName) {
-		this.airlineName = airlineName;
+	public void setAirlineNameString(String airlineNameString) {
+		this.airlineNameString = airlineNameString;
 	}
 
 	public String getFrom() {
@@ -83,12 +68,12 @@ public class Flight {
 		this.weekday = weekday;
 	}
 
-	public String getTime() {
-		return time;
+	public String getTimeString() {
+		return timeString;
 	}
 
-	public void setTimeString(String time) {
-		this.time = time;
+	public void setTimeString(String timeString) {
+		this.timeString = timeString;
 	}
 
 	public int getSeats() {
@@ -107,32 +92,21 @@ public class Flight {
 		this.costPerSeat = costPerSeat;
 	}
 
-	public boolean isDomestic(String code) {
-		char firstChar = code.charAt(0);
-
-		if (firstChar == 'D') {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean isDomestic() {
+		return false;
 	}
 
-	private void parseCode(String code) {
-		char codeChar;
-		for(int i = 0; i < code.length(); i++) {
-			codeChar = code.charAt(i);
-		}
+	public void parseCode(String code) {
 
 	}
-
 
 	@Override
 	public String toString() {
-		return "Flight [code=" + code + ", airlineNameString=" + airlineName + ", from=" + from + ", to=" + to
-				+ ", weekday=" + weekday + ", timeString=" + time + ", seats=" + seats + ", costPerSeat="
-				+ costPerSeat + ", getCode()=" + getCode() + ", getAirlineNameString()=" + getAirlineName()
+		return "Flight [code=" + code + ", airlineNameString=" + airlineNameString + ", from=" + from + ", to=" + to
+				+ ", weekday=" + weekday + ", timeString=" + timeString + ", seats=" + seats + ", costPerSeat="
+				+ costPerSeat + ", getCode()=" + getCode() + ", getAirlineNameString()=" + getAirlineNameString()
 				+ ", getFrom()=" + getFrom() + ", getTo()=" + getTo() + ", getWeekday()=" + getWeekday()
-				+ ", getTimeString()=" + getTime() + ", getSeats()=" + getSeats() + ", getCostPerSeat()="
+				+ ", getTimeString()=" + getTimeString() + ", getSeats()=" + getSeats() + ", getCostPerSeat()="
 				+ getCostPerSeat() + "]";
 	}
 
