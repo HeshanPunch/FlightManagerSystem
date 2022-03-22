@@ -22,8 +22,12 @@ public class FlightManager {
 
 //run the rest of the methods
 	public FlightManager() throws IOException {
-		populateFlights();
+		// populateFlights();
 		populateAirports();
+
+		// test
+		//System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
+		//System.out.println("Airport code pek is: " + findAirportByCode("pek") );
 
 	}
 
@@ -39,9 +43,9 @@ public class FlightManager {
 		}
 
 		in.close();
-		
-		//for testing
-		for (Flight f: flights) {
+
+		// for testing
+		for (Flight f : flights) {
 			System.out.println(f);
 		}
 	}
@@ -49,21 +53,44 @@ public class FlightManager {
 	public void populateAirports() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(AIRPORT_PATH));
 		while (in.hasNextLine()) {
-			String line = in.nextLine();
-			String[] fields = line.split(",");
-			for (int i = 0; i < fields.length; i++) {
-				airports.add(fields[i]);
+			airports.add(in.nextLine());
+
+		}
+
+		// I think airports need to be stored in 1 line
+		/*
+		 * while (in.hasNextLine()) { String line = in.nextLine(); String[] fields =
+		 * line.split(","); for (int i = 0; i < fields.length; i++) {
+		 * airports.add(fields[i]); }
+		 * 
+		 */
+
+		in.close();
+
+		// for testing
+		// System.out.println(airports);
+		/*
+		 * for (String s : airports) { System.out.println(s); }
+		 */
+
+	}
+
+	public String findAirportByCode(String code) {
+		String airport = "";
+		code = code.toUpperCase();
+
+		for (int i = 0; i < airports.size(); i++) {
+			String airportRead = airports.get(i).substring(0, 3);
+
+			if (code.equals(airportRead)) {
+				String[] fields = airports.get(i).split(",");
+				airport = fields[1];
+				break;
+
 			}
 
 		}
-		in.close();
-		
-		//for testing
-		//System.out.println(airports);
-		for (String s: airports) {
-			System.out.println(s);
-		}
-		
+		return airport;
 	}
 
 }
