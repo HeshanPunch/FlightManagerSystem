@@ -125,7 +125,8 @@ public class MainWindow extends JFrame {
 
 	/**
 	 * Creates the Main Window and any components inside it.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 
 	public MainWindow() throws IOException {
@@ -176,8 +177,8 @@ public class MainWindow extends JFrame {
 
 		panel.setLayout(new BorderLayout());
 
-		// JPanel tabPanel = createSearchPanel();
-		// panel.add(tabPanel, BorderLayout.SOUTH);
+		//JPanel tabPanel = createSearchPanel();
+		//panel.add(tabPanel, BorderLayout.SOUTH);
 
 		return panel;
 	}
@@ -215,7 +216,7 @@ public class MainWindow extends JFrame {
 		JPanel eastPanel = new JPanel();
 
 		eastPanel.setLayout(new BorderLayout());
-		eastPanel.setPreferredSize(new Dimension(250,100));
+		eastPanel.setPreferredSize(new Dimension(250, 100));
 		header = new JLabel("Reserve");
 
 		updateButton = new JButton("Update");
@@ -229,7 +230,7 @@ public class MainWindow extends JFrame {
 	}
 
 	private JPanel createCodePanel() {
-		
+
 		String[] statusStrings = { "Active" };
 		JPanel codePanel = new JPanel();
 		codePanel.setLayout(new GridLayout(7, 2));
@@ -253,7 +254,7 @@ public class MainWindow extends JFrame {
 		citizenship.setEnabled(true);
 		status = new JLabel("Status");
 		statusJComboBox = new JComboBox(statusStrings);
-				
+
 		codePanel.add(code);
 		codePanel.add(codeTextField);
 		codePanel.add(flight);
@@ -268,7 +269,7 @@ public class MainWindow extends JFrame {
 		codePanel.add(citizenshipTextField);
 		codePanel.add(status);
 		codePanel.add(statusJComboBox);
-		
+
 		return codePanel;
 	}
 
@@ -299,32 +300,42 @@ public class MainWindow extends JFrame {
 	 * 
 	 * @return JPanel containing tab buttons.
 	 */
-	/*
-	 * private JPanel createSearchPanel() { JPanel tabPanel = new JPanel(); String[]
-	 * fromCity = {"YYC"}; String[] dayStrings = {"Any"};
-	 * 
-	 * tabPanel.setLayout(new GridLayout(5,2));
-	 * 
-	 * flightsButton.addActionListener(new TabButtonActionListener());
-	 * reservationsButton.addActionListener(new TabButtonActionListener()); header =
-	 * new JLabel("Flight Finder", SwingConstants.CENTER); header.setFont(new
-	 * Font("serif", Font.PLAIN, 20)); fromJLabel = new JLabel("From",
-	 * SwingConstants.LEFT); tolJLabel = new JLabel("To", SwingConstants.LEFT);
-	 * dayJLabel = new JLabel("Day", SwingConstants.LEFT); fromBox = new
-	 * JComboBox(fromCity); toBox = new JComboBox(fromCity); dayBox = new
-	 * JComboBox(dayStrings);
-	 * 
-	 * flightsButton.addActionListener(new TabButtonActionListener());
-	 * reservationsButton.addActionListener(new TabButtonActionListener());
-	 * 
-	 * tabPanel.add(flightsButton); tabPanel.add(reservationsButton);
-	 * tabPanel.add(header); tabPanel.add(fromJLabel); tabPanel.add(fromBox);
-	 * tabPanel.add(tolJLabel); tabPanel.add(toBox); tabPanel.add(dayJLabel);
-	 * tabPanel.add(dayBox);
-	 * 
-	 * 
-	 * return tabPanel; }
-	 */
+/*
+	private JPanel createSearchPanel() {
+		JPanel tabPanel = new JPanel();
+		String[] fromCity = { "YYC" };
+		String[] dayStrings = { "Any" };
+
+		tabPanel.setLayout(new GridLayout(5, 2));
+
+		flightsButton.addActionListener(new TabButtonActionListener());
+		reservationsButton.addActionListener(new TabButtonActionListener());
+		header = new JLabel("Flight Finder", SwingConstants.CENTER);
+		header.setFont(new Font("serif", Font.PLAIN, 20));
+		fromJLabel = new JLabel("From", SwingConstants.LEFT);
+		tolJLabel = new JLabel("To", SwingConstants.LEFT);
+		dayJLabel = new JLabel("Day", SwingConstants.LEFT);
+		fromBox = new JComboBox(fromCity);
+		toBox = new JComboBox(fromCity); 
+		dayBox = new JComboBox(dayStrings);
+
+		//repeat?
+	
+		//flightsButton.addActionListener(new TabButtonActionListener());
+		//reservationsButton.addActionListener(new TabButtonActionListener());
+
+		//tabPanel.add(flightsButton);
+		//tabPanel.add(reservationsButton);
+		tabPanel.add(header);
+		tabPanel.add(fromJLabel);
+		tabPanel.add(fromBox);
+		tabPanel.add(tolJLabel);
+		tabPanel.add(toBox);
+		tabPanel.add(dayJLabel);
+		tabPanel.add(dayBox);
+
+		return tabPanel;
+	}*/
 
 	/**
 	 * Displays the JFrame window.

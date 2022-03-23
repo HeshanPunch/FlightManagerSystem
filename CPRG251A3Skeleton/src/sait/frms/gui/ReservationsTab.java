@@ -1,3 +1,4 @@
+
 package sait.frms.gui;
 
 import java.awt.*;
@@ -72,7 +73,7 @@ public class ReservationsTab extends TabBase {
 		tabPanel.setLayout(new BorderLayout());
 		findReservationsButton = new JButton("Find Reservations");
 
-		// flightsButton.addActionListener(new TabButtonActionListener());
+		//findFlightsButton.addActionListener(new TabButtonActionListener());
 		// reservationsButton.addActionListener(new TabButtonActionListener());
 		header = new JLabel("Search");
 		header.setFont(new Font("serif", Font.PLAIN, 20));

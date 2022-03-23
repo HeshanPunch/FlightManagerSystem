@@ -1,6 +1,7 @@
 package sait.frms.gui;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.*;
@@ -14,7 +15,7 @@ import sait.frms.problemdomain.Flight;
  * Holds the components for the flights tab.
  * 
  */
-public class FlightsTab extends TabBase {
+public class FlightsTab extends TabBase implements ActionListener {
 	/**
 	 * Instance of flight manager.
 	 */
@@ -127,7 +128,8 @@ public class FlightsTab extends TabBase {
 		tabPanel.setLayout(new BorderLayout());
 		findFlightsButton = new JButton("Find Flights");
 
-		// flightsButton.addActionListener(new TabButtonActionListener());
+		//WTF is going on here
+		//findFlightsButton.addActionListener(new TabButtonActionListener());
 		// reservationsButton.addActionListener(new TabButtonActionListener());
 		header = new JLabel("Flight Finder");
 		header.setFont(new Font("serif", Font.PLAIN, 20));
@@ -140,7 +142,7 @@ public class FlightsTab extends TabBase {
 
 	private JPanel createSearchJPanel() {
 		JPanel searchJPanel = new JPanel();
-		String[] fromCity = { "YYC" };
+		String[] fromCity = { "YYC", "No" };
 		String[] dayStrings = { "Any" };
 
 		searchJPanel.setLayout(new GridLayout(3, 2));
@@ -154,8 +156,8 @@ public class FlightsTab extends TabBase {
 
 		findFlightsButton = new JButton("Find Flights");
 
-		// flightsButton.addActionListener(new TabButtonActionListener());
-		// reservationsButton.addActionListener(new TabButtonActionListener());
+		//findFlightsButton.addActionListener(new TabButtonActionListener());
+		//reservationsButton.addActionListener(new TabButtonActionListener());
 
 		// tabPanel.add(flightsButton);
 		// tabPanel.add(reservationsButton);
@@ -181,5 +183,11 @@ public class FlightsTab extends TabBase {
 
 		}
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

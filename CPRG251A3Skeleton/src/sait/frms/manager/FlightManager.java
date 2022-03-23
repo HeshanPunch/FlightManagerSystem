@@ -15,12 +15,15 @@ public class FlightManager {
 	public final String WEEKDAY_FRIDAY = "Friday";
 	public final String WEEKDAY_SATURDAY = "Saturday";
 
-	ArrayList<Flight> flights = new ArrayList<Flight>();
-	ArrayList<String> airports = new ArrayList<String>();
+	private ArrayList<Flight> flights = new ArrayList<Flight>();
+	private ArrayList<String> airports = new ArrayList<String>();
 	final static String FLIGHT_PATH = "res/flights.csv";
 	final static String AIRPORT_PATH = "res/airports.csv";
 
-//run the rest of the methods
+/**
+ * FlightManager constructor class to run the rest of methods
+ * @throws IOException
+ */
 	public FlightManager() throws IOException {
 		populateFlights();
 		// populateAirports();
@@ -33,6 +36,10 @@ public class FlightManager {
 		;
 	}
 
+	/**
+	 * Populate the flights array with Flight objects from csv file
+	 * @throws FileNotFoundException
+	 */
 	public void populateFlights() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(FLIGHT_PATH));
 		while (in.hasNext()) {
@@ -52,6 +59,10 @@ public class FlightManager {
 		 */
 	}
 
+	/**
+	 * Populate the airports String arrayList
+	 * @throws FileNotFoundException
+	 */
 	public void populateAirports() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(AIRPORT_PATH));
 		while (in.hasNextLine()) {
@@ -76,6 +87,12 @@ public class FlightManager {
 		 */
 
 	}
+	
+	/**
+	 * Finds the airport based on its code i.e. "YYC"
+	 * @param code
+	 * @return
+	 */
 
 	public String findAirportByCode(String code) {
 		String airport = "";
@@ -94,6 +111,12 @@ public class FlightManager {
 		}
 		return airport;
 	}
+	
+	/**
+	 * Find the Flight object based on the flight code passed
+	 * @param code
+	 * @return
+	 */
 
 	public Flight findFlightByCode(String code) {
 		Flight foundFlight = null;
@@ -111,6 +134,14 @@ public class FlightManager {
 
 	}
 
+	/**
+	 * Finds flights that match the from, to, and weekday passed, can be 0 or multiple matches
+	 * @param from
+	 * @param to
+	 * @param weekday
+	 * @return list of matches
+	 */
+	
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
 
@@ -124,5 +155,7 @@ public class FlightManager {
 		return matchingflights;
 
 	}
+	
+	
 
 }
