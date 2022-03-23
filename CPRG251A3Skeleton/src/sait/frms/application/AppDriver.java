@@ -19,17 +19,14 @@ public class AppDriver {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		/*MainWindow mainWindow = new MainWindow();
+		MainWindow mainWindow = new MainWindow();
 		mainWindow.display();
-		*/ //commented out for now
-		
-		//testing 
+		//commented out for now
+
 		FlightManager f1 = new FlightManager();
 		
 		ReservationManager r1 = new ReservationManager();
-		
-		
-	
+
 	}
 	
 	
