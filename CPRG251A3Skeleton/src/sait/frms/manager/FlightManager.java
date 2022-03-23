@@ -23,13 +23,14 @@ public class FlightManager {
 //run the rest of the methods
 	public FlightManager() throws IOException {
 		populateFlights();
-		//populateAirports();
+		// populateAirports();
 
 		// test
-		//System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
-		//System.out.println("Airport code pek is: " + findAirportByCode("pek") );
-		System.out.println("Flight with code 5943 is: " + findFlightByCode("5943") );
-
+		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
+		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
+		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
+		System.out.println("Flight from FRA to YYC on Friday: " + findFlights("DXB", "YVR", "Monday"));
+		;
 	}
 
 	public void populateFlights() throws FileNotFoundException {
@@ -47,10 +48,8 @@ public class FlightManager {
 
 		// for testing
 		/*
-		for (Flight f : flights) {
-			System.out.println(f);
-		}
-		*/
+		 * for (Flight f : flights) { System.out.println(f); }
+		 */
 	}
 
 	public void populateAirports() throws FileNotFoundException {
@@ -96,20 +95,34 @@ public class FlightManager {
 		return airport;
 	}
 
-public Flight findFlightByCode(String code) {
-	Flight foundFlight = null;
-	
-	for (int i = 0; i < flights.size(); i++) {
-		String codeRead = flights.get(i).getCode();
-		if (code.equals(codeRead)) {
-			foundFlight = flights.get(i);
-			break;
+	public Flight findFlightByCode(String code) {
+		Flight foundFlight = null;
+
+		for (int i = 0; i < flights.size(); i++) {
+			String codeRead = flights.get(i).getCode();
+			if (code.equals(codeRead)) {
+				foundFlight = flights.get(i);
+				break;
+			}
+
 		}
-		
+
+		return foundFlight;
+
 	}
-	
-	return foundFlight;
-	
-}
-	
+
+	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
+		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
+
+		for (int i = 0; i < flights.size(); i++) {
+			if (from.equalsIgnoreCase(flights.get(i).getFrom()) && to.equalsIgnoreCase(flights.get(i).getTo())
+					&& weekday.equalsIgnoreCase(flights.get(i).getWeekday())) {
+				matchingflights.add(flights.get(i));
+
+			}
+		}
+		return matchingflights;
+
+	}
+
 }
