@@ -26,7 +26,7 @@ public class ReservationManager extends FlightManager {
 		int random = 1000 + (int) (Math.random() * 9000);
 		//System.out.println(random);
 		char typeFlight;
-		Flight f1 = findFlightByCode("5943"); // Need to get this info from user
+		Flight f1 = findFlightByCode("VA-2705"); // Need to get this info from user
 		if (f1.getFrom().charAt(0) == 'Y' && f1.getTo().charAt(0) == 'Y') {
 			typeFlight = 'D';
 		} else {
