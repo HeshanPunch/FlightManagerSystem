@@ -25,6 +25,13 @@ public class AppDriver {
 		
 		//testing 
 		FlightManager f1 = new FlightManager();
+		
+		ReservationManager r1 = new ReservationManager();
+		
+		
+	
 	}
+	
+	
 
 }

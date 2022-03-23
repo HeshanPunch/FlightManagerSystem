@@ -23,12 +23,12 @@ public class FlightManager {
 //run the rest of the methods
 	public FlightManager() throws IOException {
 		populateFlights();
-		//populateAirports();
+		// populateAirports();
 
 		// test
-		//System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
-		//System.out.println("Airport code pek is: " + findAirportByCode("pek") );
-		System.out.println("Flight with code 5943 is: " + findFlightByCode("5943") );
+		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
+		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
+		System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
 
 	}
 
@@ -47,10 +47,8 @@ public class FlightManager {
 
 		// for testing
 		/*
-		for (Flight f : flights) {
-			System.out.println(f);
-		}
-		*/
+		 * for (Flight f : flights) { System.out.println(f); }
+		 */
 	}
 
 	public void populateAirports() throws FileNotFoundException {
@@ -96,20 +94,20 @@ public class FlightManager {
 		return airport;
 	}
 
-public Flight findFlightByCode(String code) {
-	Flight foundFlight = null;
-	
-	for (int i = 0; i < flights.size(); i++) {
-		String codeRead = flights.get(i).getCode();
-		if (code.equals(codeRead)) {
-			foundFlight = flights.get(i);
-			break;
+	public Flight findFlightByCode(String code) {
+		Flight foundFlight = null;
+
+		for (int i = 0; i < flights.size(); i++) {
+			String codeRead = flights.get(i).getCode();
+			if (code.equals(codeRead)) {
+				foundFlight = flights.get(i);
+				break;
+			}
+
 		}
-		
+
+		return foundFlight;
+
 	}
-	
-	return foundFlight;
-	
-}
-	
+
 }

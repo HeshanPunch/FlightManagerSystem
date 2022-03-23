@@ -8,13 +8,11 @@ public class Reservation {
 	private String citizenship;
 	private double cost;
 	private boolean active;
-	
-	
+
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public Reservation(String code, String flightCode, String airline, String name, String citizenship, double cost,
 			boolean active) {
@@ -28,76 +26,61 @@ public class Reservation {
 		this.active = active;
 	}
 
-
 	public String getCode() {
 		return code;
 	}
-
 
 	public void setCode(String code) {
 		this.code = code;
 	}
 
-
 	public String getFlightCode() {
 		return flightCode;
 	}
-
 
 	public void setFlightCode(String flightCode) {
 		this.flightCode = flightCode;
 	}
 
-
 	public String getAirline() {
 		return airline;
 	}
-
 
 	public void setAirline(String airline) {
 		this.airline = airline;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getCitizenship() {
 		return citizenship;
 	}
-
 
 	public void setCitizenship(String citizenship) {
 		this.citizenship = citizenship;
 	}
 
-
 	public double getCost() {
 		return cost;
 	}
-
 
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
 
-
 	public boolean isActive() {
 		return active;
 	}
 
-
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
 
 	@Override
 	public String toString() {
@@ -107,7 +90,5 @@ public class Reservation {
 				+ ", getCitizenship()=" + getCitizenship() + ", getCost()=" + getCost() + ", isActive()=" + isActive()
 				+ "]";
 	}
-	
-	
 
 }
