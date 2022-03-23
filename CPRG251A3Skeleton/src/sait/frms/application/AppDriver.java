@@ -22,9 +22,13 @@ public class AppDriver {
 		MainWindow mainWindow = new MainWindow();
 		mainWindow.display();
 		//commented out for now
+
+		FlightManager f1 = new FlightManager();
 		
-		//testing 
-		//FlightManager f1 = new FlightManager();
+		ReservationManager r1 = new ReservationManager();
+
 	}
+	
+	
 
 }

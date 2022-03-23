@@ -31,9 +31,14 @@ public class FlightManager {
 		// test
 		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
 		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
+
+		System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
+
+
 		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
 		System.out.println("Flight from FRA to YYC on Friday: " + findFlights("DXB", "YVR", "Monday"));
 		;
+
 	}
 
 	/**
@@ -141,7 +146,6 @@ public class FlightManager {
 	 * @param weekday
 	 * @return list of matches
 	 */
-	
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
 
@@ -157,5 +161,6 @@ public class FlightManager {
 	}
 	
 	
+
 
 }
