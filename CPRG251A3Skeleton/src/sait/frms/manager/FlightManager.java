@@ -15,18 +15,15 @@ public class FlightManager {
 	public final String WEEKDAY_FRIDAY = "Friday";
 	public final String WEEKDAY_SATURDAY = "Saturday";
 
-<<<<<<< HEAD
+
 	public static final String OTTO = "Otto Airlines";
 	public static final String CONNED = "Conned Air";
 	public static final String TRY = "Try a Bus Airways";
 	public static final String VERTICAL = "Vertical Airways";
 
-	ArrayList<Flight> flights = new ArrayList<Flight>();
-	ArrayList<String> airports = new ArrayList<String>();
-=======
 	private ArrayList<Flight> flights = new ArrayList<Flight>();
 	private ArrayList<String> airports = new ArrayList<String>();
->>>>>>> refs/remotes/origin/master
+
 	final static String FLIGHT_PATH = "res/flights.csv";
 	final static String AIRPORT_PATH = "res/airports.csv";
 
@@ -159,8 +156,7 @@ public class FlightManager {
 
 	}
 
-<<<<<<< HEAD
-=======
+
 	/**
 	 * Finds flights that match the from, to, and weekday passed, can be 0 or multiple matches
 	 * @param from
@@ -168,7 +164,7 @@ public class FlightManager {
 	 * @param weekday
 	 * @return list of matches
 	 */
->>>>>>> refs/remotes/origin/master
+
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
 
