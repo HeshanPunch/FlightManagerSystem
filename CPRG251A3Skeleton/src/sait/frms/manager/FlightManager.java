@@ -20,29 +20,28 @@ public class FlightManager {
 	final static String FLIGHT_PATH = "res/flights.csv";
 	final static String AIRPORT_PATH = "res/airports.csv";
 
-/**
- * FlightManager constructor class to run the rest of methods
- * @throws IOException
- */
+	/**
+	 * FlightManager constructor class to run the rest of methods
+	 * 
+	 * @throws IOException
+	 */
 	public FlightManager() throws IOException {
 		populateFlights();
-		// populateAirports();
+		populateAirports();
 
 		// test
 		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
 		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
-
-		System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
-
-
 		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
-		System.out.println("Flight from FRA to YYC on Friday: " + findFlights("DXB", "YVR", "Monday"));
-		;
+		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
+		// System.out.println("Flight from FRA to YYC on Friday: " + findFlights("DXB",
+		// "YVR", "Monday"));
 
 	}
 
 	/**
 	 * Populate the flights array with Flight objects from csv file
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void populateFlights() throws FileNotFoundException {
@@ -66,6 +65,7 @@ public class FlightManager {
 
 	/**
 	 * Populate the airports String arrayList
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void populateAirports() throws FileNotFoundException {
@@ -92,9 +92,23 @@ public class FlightManager {
 		 */
 
 	}
-	
+
+	// I need this for GUI -- Heshan
+	public String[] getAirportCodes() {
+		String[] codes = new String[airports.size()];
+
+		for (int i = 0; i < airports.size(); i++) {
+			String airportRead = airports.get(i).substring(0, 3);
+			codes[i] = airportRead;
+			// System.out.println(airportRead);
+		}
+
+		return codes;
+	}
+
 	/**
 	 * Finds the airport based on its code i.e. "YYC"
+	 * 
 	 * @param code
 	 * @return
 	 */
@@ -116,9 +130,10 @@ public class FlightManager {
 		}
 		return airport;
 	}
-	
+
 	/**
 	 * Find the Flight object based on the flight code passed
+	 * 
 	 * @param code
 	 * @return
 	 */
@@ -140,7 +155,9 @@ public class FlightManager {
 	}
 
 	/**
-	 * Finds flights that match the from, to, and weekday passed, can be 0 or multiple matches
+	 * Finds flights that match the from, to, and weekday passed, can be 0 or
+	 * multiple matches
+	 * 
 	 * @param from
 	 * @param to
 	 * @param weekday
@@ -148,19 +165,25 @@ public class FlightManager {
 	 */
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
-
-		for (int i = 0; i < flights.size(); i++) {
-			if (from.equalsIgnoreCase(flights.get(i).getFrom()) && to.equalsIgnoreCase(flights.get(i).getTo())
-					&& weekday.equalsIgnoreCase(flights.get(i).getWeekday())) {
-				matchingflights.add(flights.get(i));
-
+		if (weekday.equals(WEEKDAY_ANY)) {
+			for (int i = 0; i < flights.size(); i++) {
+				if (from.equalsIgnoreCase(flights.get(i).getFrom()) && to.equalsIgnoreCase(flights.get(i).getTo())) {
+					matchingflights.add(flights.get(i));
+				} else if (from.equalsIgnoreCase(flights.get(i).getFrom())
+						&& to.equalsIgnoreCase(flights.get(i).getTo())
+						&& weekday.equalsIgnoreCase(flights.get(i).getWeekday())) {
+					matchingflights.add(flights.get(i));
+				}
 			}
 		}
 		return matchingflights;
 
 	}
-	
-	
 
+	public String[] getWeekdays() {
+		String[] weekdays = { WEEKDAY_ANY, WEEKDAY_SUNDAY, WEEKDAY_MONDAY, WEEKDAY_TUESDAY, WEEKDAY_WEDNESDAY,
+				WEEKDAY_THURSDAY, WEEKDAY_FRIDAY, WEEKDAY_SATURDAY };
+		return weekdays;
+	}
 
 }

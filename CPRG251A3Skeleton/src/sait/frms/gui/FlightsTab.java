@@ -2,6 +2,8 @@ package sait.frms.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.*;
@@ -102,7 +104,12 @@ public class FlightsTab extends TabBase implements ActionListener {
 		panel.setLayout(new BorderLayout());
 
 		flightsModel = new DefaultListModel<>();
+		// flightsModel.addElement(new Flight());//test
 		flightsList = new JList<>(flightsModel);
+
+		// testing
+		// String [] test = {"One", "Two", "Three"};
+		// flightsList = new JList<>(flightsModel);
 
 		// User can only select one item at a time.
 		flightsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -128,8 +135,8 @@ public class FlightsTab extends TabBase implements ActionListener {
 		tabPanel.setLayout(new BorderLayout());
 		findFlightsButton = new JButton("Find Flights");
 
-		//WTF is going on here
-		//findFlightsButton.addActionListener(new TabButtonActionListener());
+		// WTF is going on here
+		// findFlightsButton.addActionListener(this);
 		// reservationsButton.addActionListener(new TabButtonActionListener());
 		header = new JLabel("Flight Finder");
 		header.setFont(new Font("serif", Font.PLAIN, 20));
@@ -142,8 +149,8 @@ public class FlightsTab extends TabBase implements ActionListener {
 
 	private JPanel createSearchJPanel() {
 		JPanel searchJPanel = new JPanel();
-		String[] fromCity = { "YYC", "No" };
-		String[] dayStrings = { "Any" };
+		String[] fromCity = flightManager.getAirportCodes();
+		String[] dayStrings = flightManager.getWeekdays();
 
 		searchJPanel.setLayout(new GridLayout(3, 2));
 
@@ -156,10 +163,10 @@ public class FlightsTab extends TabBase implements ActionListener {
 
 		findFlightsButton = new JButton("Find Flights");
 
-		//findFlightsButton.addActionListener(new TabButtonActionListener());
-		//reservationsButton.addActionListener(new TabButtonActionListener());
+		findFlightsButton.addActionListener(this);
+		// reservationsButton.addActionListener(new TabButtonActionListener());
 
-		// tabPanel.add(flightsButton);
+		// tabPanel.add(findFlightsButton);
 		// tabPanel.add(reservationsButton);
 
 		searchJPanel.add(fromJLabel, BorderLayout.NORTH);
@@ -187,7 +194,15 @@ public class FlightsTab extends TabBase implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getSource() == findFlightsButton) {
+			ArrayList<Flight> flightList = flightManager.findFlights(fromBox.getSelectedItem().toString(),
+					toBox.getSelectedItem().toString(), dayBox.getSelectedItem().toString());
+			flightsModel.clear();
+			for (Flight f : flightList) {
+				flightsModel.addElement(f);
+			}
+
+		}
 	}
+
 }
