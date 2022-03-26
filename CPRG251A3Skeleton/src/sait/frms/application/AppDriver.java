@@ -2,8 +2,11 @@ package sait.frms.application;
 
 
 import sait.frms.manager.*;
+import sait.frms.problemdomain.Flight;
+import sait.frms.problemdomain.Reservation;
 
 import java.io.IOException;
+
 
 import sait.frms.gui.*;
 
@@ -26,6 +29,17 @@ public class AppDriver {
 		FlightManager f1 = new FlightManager();
 		
 		ReservationManager r1 = new ReservationManager();
+		Flight f5 = new Flight();
+
+		
+		
+		f5.parseCode("8A-7296");
+		
+//		for(Reservation r: r1.getAll()) {
+//			System.out.println(r);
+//		}
+		Reservation r2 = r1.findByCode("D1218");
+		System.out.println(r2);
 
 	}
 	

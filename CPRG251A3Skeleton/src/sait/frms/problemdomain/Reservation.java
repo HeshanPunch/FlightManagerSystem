@@ -85,10 +85,7 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [code=" + code + ", flightCode=" + flightCode + ", airline=" + airline + ", name=" + name
-				+ ", citizenship=" + citizenship + ", cost=" + cost + ", active=" + active + ", getCode()=" + getCode()
-				+ ", getFlightCode()=" + getFlightCode() + ", getAirline()=" + getAirline() + ", getName()=" + getName()
-				+ ", getCitizenship()=" + getCitizenship() + ", getCost()=" + getCost() + ", isActive()=" + isActive()
-				+ "]";
+				+ ", citizenship=" + citizenship + ", cost=" + cost + ", active=" + active + "]";
 	}
 
 }
