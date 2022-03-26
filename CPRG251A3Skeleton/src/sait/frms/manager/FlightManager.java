@@ -27,6 +27,16 @@ public class FlightManager {
 	final static String FLIGHT_PATH = "res/flights.csv";
 	final static String AIRPORT_PATH = "res/airports.csv";
 
+	public ArrayList<String> getAirports() {
+	return airports;
+	}
+
+	
+	public ArrayList<Flight> getFlights() {
+	return flights;
+	}
+	
+		
 	/**
 	 * FlightManager constructor class to run the rest of methods
 	 * 
@@ -91,7 +101,7 @@ public class FlightManager {
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public void populateAirports() throws FileNotFoundException {
+	private void populateAirports() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(AIRPORT_PATH));
 		while (in.hasNextLine()) {
 			airports.add(in.nextLine());
@@ -136,7 +146,7 @@ public class FlightManager {
 	 * @return
 	 */
 
-	public String findAirportByCode(String code) {
+	private String findAirportByCode(String code) {
 		String airport = "";
 		code = code.toUpperCase();
 
