@@ -102,9 +102,9 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Flight [code=" + code + ", airlineNameString=" + airlineNameString + ", from=" + from + ", to=" + to
-				+ ", weekday=" + weekday + ", timeString=" + timeString + ", seats=" + seats + ", costPerSeat="
-				+ costPerSeat + "]";
+		return code + ", " +  "from: " + from + ", to:" + to
+				+ ", Day: " + weekday + ", Cost: "
+				+ costPerSeat;
 	}
 
 
