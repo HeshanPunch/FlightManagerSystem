@@ -34,6 +34,7 @@ public class ReservationsTab extends TabBase {
 	private JTextField nameField;
 
 	private JButton findReservationsButton;
+
 	
 	/**
 	 * Creates the components for reservations tab.
@@ -96,13 +97,13 @@ public class ReservationsTab extends TabBase {
 		airlineField = new JTextField();
 		nameField = new JTextField();
 
-		findReservationsButton = new JButton("Find Reservations");
+		//findReservationsButton = new JButton("Find Reservations");
 
 		// flightsButton.addActionListener(new TabButtonActionListener());
 		// reservationsButton.addActionListener(new TabButtonActionListener());
 
 		// tabPanel.add(flightsButton);
-		// tabPanel.add(reservationsButton);
+		//searchJPanel.add(findReservationsButton);
 
 		searchJPanel.add(codeLabel, BorderLayout.NORTH);
 		searchJPanel.add(codeField);

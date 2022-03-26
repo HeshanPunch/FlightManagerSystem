@@ -12,6 +12,7 @@ import sait.frms.gui.MainWindow.TabButtonActionListener;
 import sait.frms.manager.FlightManager;
 import sait.frms.manager.ReservationManager;
 import sait.frms.problemdomain.Flight;
+import sait.frms.gui.MainWindow.*;
 
 /**
  * Holds the components for the flights tab.
@@ -52,6 +53,8 @@ public class FlightsTab extends TabBase implements ActionListener {
 	private JButton findFlightsButton;
 
 	private JButton findReservationsButton;
+
+
 
 	/**
 	 * Creates the components for flights tab.
@@ -104,7 +107,6 @@ public class FlightsTab extends TabBase implements ActionListener {
 		panel.setLayout(new BorderLayout());
 
 		flightsModel = new DefaultListModel<>();
-		// flightsModel.addElement(new Flight());//test
 		flightsList = new JList<>(flightsModel);
 
 		// testing
@@ -150,7 +152,7 @@ public class FlightsTab extends TabBase implements ActionListener {
 	private JPanel createSearchJPanel() {
 		JPanel searchJPanel = new JPanel();
 		String[] fromCity = flightManager.getAirportCodes();
-		String[] dayStrings = flightManager.getWeekdays();
+		String[] dayStrings = { flightManager.WEEKDAY_ANY };
 
 		searchJPanel.setLayout(new GridLayout(3, 2));
 
@@ -187,7 +189,8 @@ public class FlightsTab extends TabBase implements ActionListener {
 		 */
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
-
+			Flight selectedFlight = flightsList.getSelectedValue();
+			MainWindow.changeCodePanel(selectedFlight);
 		}
 
 	}

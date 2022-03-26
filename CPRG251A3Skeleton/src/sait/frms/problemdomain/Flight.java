@@ -100,6 +100,7 @@ public class Flight {
 
 	}
 
+	//need to change to match example
 	@Override
 	public String toString() {
 		return "Flight [code=" + code + ", airlineNameString=" + airlineNameString + ", from=" + from + ", to=" + to

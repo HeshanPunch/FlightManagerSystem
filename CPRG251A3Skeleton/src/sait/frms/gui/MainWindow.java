@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import sait.frms.manager.FlightManager;
 import sait.frms.manager.ReservationManager;
+import sait.frms.problemdomain.Flight;
 
 /**
  * The main window (JFrame).
@@ -94,22 +95,23 @@ public class MainWindow extends JFrame {
 	private JButton findReservationsButton;
 
 	private JButton updateButton;
+	private JButton reserveButton;
 
 	private JLabel code;
 
-	private JTextField codeTextField;
+	private static JTextField codeTextField;
 
 	private JLabel flight;
 
-	private JTextField flighTextField;
+	private static JTextField flighTextField;
 
 	private JLabel airline;
 
-	private JTextField airlineTextField;
+	private static JTextField airlineTextField;
 
 	private JLabel cost;
 
-	private JTextField costTextField;
+	private static JTextField costTextField;
 
 	private JLabel name;
 
@@ -254,7 +256,11 @@ public class MainWindow extends JFrame {
 		citizenship.setEnabled(true);
 		status = new JLabel("Status");
 		statusJComboBox = new JComboBox(statusStrings);
+		
+		//reserveButton = new JButton("Reserve");
 
+		
+		
 		codePanel.add(code);
 		codePanel.add(codeTextField);
 		codePanel.add(flight);
@@ -269,6 +275,7 @@ public class MainWindow extends JFrame {
 		codePanel.add(citizenshipTextField);
 		codePanel.add(status);
 		codePanel.add(statusJComboBox);
+		//codePanel.add(reserveButton);
 
 		return codePanel;
 	}
@@ -364,4 +371,28 @@ public class MainWindow extends JFrame {
 
 		
 	}
+
+	//used to set the results on the East pane
+	public static void changeCodePanel(Flight selectedFlight) {
+		/*//this is res code
+		codeTextField.setText(selectedFlight.getCode());
+		codeTextField.setEnabled(true);
+		*/
+		
+		
+		flighTextField.setText(selectedFlight.getCode());
+		flighTextField.setEnabled(true);
+		
+		
+		airlineTextField.setText(selectedFlight.getAirlineNameString());
+		airlineTextField.setEnabled(true);
+		
+		costTextField.setText(Double.toString(selectedFlight.getCostPerSeat()));
+		costTextField.setEnabled(true);
+		
+		
+		
+	}
+	
+	
 }
