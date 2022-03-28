@@ -97,12 +97,25 @@ public class Flight {
 	}
 
 	public void parseCode(String code) {
+		
+		String airline = "" + code.charAt(0) + code.charAt(1);
+		
+		if(airline == "OA") {
+			airlineNameString = "Otto Airlines";
+		}else if (airline == "CA") {
+			airlineNameString = "Conned Air";
+		}else if (airline == "TB") {
+			airlineNameString = "Try a Bus Airways";
+		}else if (airline == "CA") {
+			airlineNameString = "Vertical Airways";
+		}
+		this.code = code;
 
 	}
 
 	@Override
 	public String toString() {
-		return code + ", " +  "from: " + from + ", to:" + to
+		return code + ", " +  "From: " + from + ", To:" + to
 				+ ", Day: " + weekday + ", Cost: "
 				+ costPerSeat;
 	}

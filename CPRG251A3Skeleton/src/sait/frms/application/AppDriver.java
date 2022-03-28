@@ -26,20 +26,23 @@ public class AppDriver {
 		mainWindow.display();
 		//commented out for now
 
-		FlightManager f1 = new FlightManager();
+		//FlightManager f1 = new FlightManager();
 		
 		ReservationManager r1 = new ReservationManager();
-		Flight f5 = new Flight();
+		r1.newReservationCode("TB-8477", "Joe", "Canadian");
+		r1.findByName("Paolo");
+		
+		//Flight f5 = new Flight();
 
 		
 		
-		f5.parseCode("8A-7296");
+		//f5.parseCode("8A-7296");
 		
 //		for(Reservation r: r1.getAll()) {
 //			System.out.println(r);
 //		}
-		Reservation r2 = r1.findByCode("D1218");
-		System.out.println(r2);
+		//Reservation r2 = r1.findByName("TB-8477", "Joe", "Canadian");
+		//System.out.println(r2);
 
 	}
 	

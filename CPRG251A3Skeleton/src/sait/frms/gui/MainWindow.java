@@ -257,12 +257,12 @@ public class MainWindow extends JFrame {
 		status = new JLabel("Status");
 		statusJComboBox = new JComboBox(statusStrings);
 		
-		//reserveButton = new JButton("Reserve");
-
+		reserveButton = new JButton("Reserve");
+		reserveButton.addActionListener(new TabButtonActionListener());
 		
 		
-		codePanel.add(code);
-		codePanel.add(codeTextField);
+		//codePanel.add(code);
+		//codePanel.add(codeTextField); //I removed these field
 		codePanel.add(flight);
 		codePanel.add(flighTextField);
 		codePanel.add(airline);
@@ -275,7 +275,7 @@ public class MainWindow extends JFrame {
 		codePanel.add(citizenshipTextField);
 		codePanel.add(status);
 		codePanel.add(statusJComboBox);
-		//codePanel.add(reserveButton);
+		codePanel.add(reserveButton); //I added the reserve button
 
 		return codePanel;
 	}
@@ -366,6 +366,14 @@ public class MainWindow extends JFrame {
 				cardLayout.show(centerPanel, TAB_FLIGHTS);
 			} else if (e.getSource() == reservationsButton) {
 				cardLayout.show(centerPanel, TAB_RESERVATIONS);
+			} else if (e.getSource() == reserveButton) {
+				try {
+					reservationManager.newReservationCode(flighTextField.getText(), nameTextField.getText(), citizenshipTextField.getText());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		}
 
@@ -393,6 +401,8 @@ public class MainWindow extends JFrame {
 		
 		
 	}
+	
+	
 	
 	
 }

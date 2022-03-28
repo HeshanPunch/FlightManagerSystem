@@ -17,7 +17,7 @@ public class ReservationManager extends FlightManager {
 	public ReservationManager() throws IOException {
 		this.raf = new RandomAccessFile(BINARY_FILE, "rw");
 
-		newReservationCode();
+		//newReservationCode();
 
 	}
 
@@ -26,21 +26,21 @@ public class ReservationManager extends FlightManager {
 	 * 
 	 * @throws IOException
 	 */
-	private void newReservationCode() throws IOException {
+	public void newReservationCode(String flight, String name, String citizenship) throws IOException {
 		int random = 1000 + (int) (Math.random() * 9000);
 		// System.out.println(random);
 		char typeFlight;
-		Flight f1 = findFlightByCode("TB-8477"); // Need to get this info from user
-		if (f1.getFrom().charAt(0) == 'Y' && f1.getTo().charAt(0) == 'Y') {
+		Flight f1 = findFlightByCode(flight); // Need to get this info from user
+		if (flight.charAt(0) == 'Y' && flight.charAt(0) == 'Y') {
 			typeFlight = 'D';
 		} else {
 			typeFlight = 'I';
 		}
 		String code = typeFlight + String.valueOf(random);
-		String flightCode = f1.getCode();
+		String flightCode = flight;
 		String airline = f1.getAirlineNameString();
-		String passengerName = "Paolo"; // Need to get this info from user
-		String passengerCitizenship = "Brasilian"; // Need to get this info from user
+		String passengerName = name; // Need to get this info from user
+		String passengerCitizenship = citizenship; // Need to get this info from user
 		double cost = f1.getCostPerSeat();
 		boolean available;
 		if (f1.getSeats() > 0) {
@@ -114,6 +114,18 @@ public class ReservationManager extends FlightManager {
 		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
 			Reservation reservation = this.readReservation();
 			if (reservation.getCode().equals(code)) {
+				return reservation;
+			}
+		}
+		return null;
+	}
+	
+	public Reservation findByName(String name) throws IOException {
+		this.raf.seek(this.raf.length());
+
+		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
+			Reservation reservation = this.readReservation();
+			if (reservation.getName().equals(name)) {
 				return reservation;
 			}
 		}
