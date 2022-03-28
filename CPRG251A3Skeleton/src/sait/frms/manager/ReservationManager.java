@@ -17,6 +17,8 @@ public class ReservationManager extends FlightManager {
 	public ReservationManager() throws IOException {
 		this.raf = new RandomAccessFile(BINARY_FILE, "rw");
 
+		//System.out.println(findByName("2Heshan"));
+
 		// newReservationCode();
 
 	}
@@ -27,13 +29,15 @@ public class ReservationManager extends FlightManager {
 	 * @throws IOException
 	 */
 	public void newReservationCode(String flight, String name, String citizenship) throws IOException {
-		
+
 		String code;
 		int random = 1000 + (int) (Math.random() * 9000);
 		// System.out.println(random);
 		char typeFlight;
 		Flight f1 = findFlightByCode(flight); // Need to get this info from user
+
 		if (f1.getFrom().charAt(0) == 'Y' && f1.getTo().charAt(0) == 'Y') {
+
 			typeFlight = 'D';
 		} else {
 			typeFlight = 'I';
@@ -49,32 +53,24 @@ public class ReservationManager extends FlightManager {
 			} else if (citizenship == null || citizenship.contentEquals("")) {
 				System.out.println("Fill in with the citizenship!");
 				throw new Exception("No citizenship");
-			}else 
-			code = typeFlight + String.valueOf(random);
-			//String flightCode = flight;
-			String airline = f1.getAirlineNameString();
-			//String passengerName = name; // Need to get this info from user
-			//String passengerCitizenship = citizenship; // Need to get this info from user
-			double cost = f1.getCostPerSeat();
-			boolean available;
-			
-			Reservation r1 = new Reservation(code, flight, airline, name, citizenship, cost, true);
-			writeReservation(r1);
-			System.out.println(r1);
-				
+			} else {
+				code = typeFlight + String.valueOf(random);
+				// String flightCode = flight;
+				String airline = f1.getAirlineNameString();
+				// String passengerName = name; // Need to get this info from user
+				// String passengerCitizenship = citizenship; // Need to get this info from user
+				double cost = f1.getCostPerSeat();
+				boolean available;
+
+				Reservation r1 = new Reservation(code, flight, airline, name, citizenship, cost, true);
+				writeReservation(r1);
+				System.out.println(r1);
+			}
+
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			System.out.println("you are here");
 		}
-
-		
-//		if (f1.getSeats() = 0) {
-//			available = true;
-//		} else {
-//			available = false;
-//		}
-
-		
 
 	}
 

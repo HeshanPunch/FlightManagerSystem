@@ -12,6 +12,7 @@ import javax.swing.*;
 import sait.frms.manager.FlightManager;
 import sait.frms.manager.ReservationManager;
 import sait.frms.problemdomain.Flight;
+import sait.frms.problemdomain.Reservation;
 
 /**
  * The main window (JFrame).
@@ -24,7 +25,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * Holds the flight manager.
 	 */
-	private FlightManager flightManager;
+	private static FlightManager flightManager;
 
 	/**
 	 * Holds the reservation manager.
@@ -94,7 +95,7 @@ public class MainWindow extends JFrame {
 
 	private JButton findReservationsButton;
 
-	private JButton updateButton;
+	//private JButton updateButton;
 	private JButton reserveButton;
 
 	private JLabel code;
@@ -104,6 +105,9 @@ public class MainWindow extends JFrame {
 	private JLabel flight;
 
 	private static JTextField flighTextField;
+	
+	private static JTextField dayTextField;
+	private JLabel day;
 
 	private JLabel airline;
 
@@ -115,11 +119,11 @@ public class MainWindow extends JFrame {
 
 	private JLabel name;
 
-	private JTextField nameTextField;
+	private static JTextField nameTextField;
 
 	private JLabel citizenship;
 
-	private JTextField citizenshipTextField;
+	private static JTextField citizenshipTextField;
 
 	private JLabel status;
 
@@ -221,12 +225,13 @@ public class MainWindow extends JFrame {
 		eastPanel.setPreferredSize(new Dimension(250, 100));
 		header = new JLabel("Reserve");
 
-		updateButton = new JButton("Update");
+		reserveButton = new JButton("Reserve");
 
 		eastPanel.add(header, BorderLayout.NORTH);
-		eastPanel.add(updateButton, BorderLayout.PAGE_END);
+		eastPanel.add(reserveButton, BorderLayout.PAGE_END);
 		codePanel = createCodePanel();
 		eastPanel.add(codePanel, BorderLayout.LINE_END);
+		reserveButton.addActionListener(new TabButtonActionListener());
 
 		return eastPanel;
 	}
@@ -235,7 +240,7 @@ public class MainWindow extends JFrame {
 
 		String[] statusStrings = { "Active" };
 		JPanel codePanel = new JPanel();
-		codePanel.setLayout(new GridLayout(7, 2));
+		codePanel.setLayout(new GridLayout(9, 2));
 		code = new JLabel("Code");
 		codeTextField = new JTextField(5);
 		codeTextField.setEnabled(false);
@@ -243,6 +248,11 @@ public class MainWindow extends JFrame {
 		flighTextField = new JTextField(10);
 		flighTextField.setEnabled(false);
 		airline = new JLabel("Airline");
+	
+		dayTextField = new JTextField(10);
+		dayTextField.setEnabled(false);
+		day = new JLabel("Day");
+		
 		airlineTextField = new JTextField(10);
 		airlineTextField.setEnabled(false);
 		cost = new JLabel("Cost");
@@ -257,16 +267,18 @@ public class MainWindow extends JFrame {
 		status = new JLabel("Status");
 		statusJComboBox = new JComboBox(statusStrings);
 		
-		reserveButton = new JButton("Reserve");
-		reserveButton.addActionListener(new TabButtonActionListener());
+		//reserveButton = new JButton("Reserve");
 		
 		
-		//codePanel.add(code);
-		//codePanel.add(codeTextField); //I removed these field
+		
+		codePanel.add(code);
+		codePanel.add(codeTextField);
 		codePanel.add(flight);
 		codePanel.add(flighTextField);
 		codePanel.add(airline);
 		codePanel.add(airlineTextField);
+		codePanel.add(day);
+		codePanel.add(dayTextField);
 		codePanel.add(cost);
 		codePanel.add(costTextField);
 		codePanel.add(name);
@@ -275,7 +287,7 @@ public class MainWindow extends JFrame {
 		codePanel.add(citizenshipTextField);
 		codePanel.add(status);
 		codePanel.add(statusJComboBox);
-		codePanel.add(reserveButton); //I added the reserve button
+		//codePanel.add(reserveButton); //I added the reserve button
 
 		return codePanel;
 	}
@@ -397,6 +409,50 @@ public class MainWindow extends JFrame {
 		
 		costTextField.setText(Double.toString(selectedFlight.getCostPerSeat()));
 		costTextField.setEnabled(true);
+		
+		
+		
+	}
+	
+	public static void changeCodePanel(Reservation selectedRes) {
+		
+		codeTextField.setText(selectedRes.getCode());
+		codeTextField.setEnabled(true);
+	
+		
+		
+		flighTextField.setText(selectedRes.getFlightCode());
+		flighTextField.setEnabled(true);
+		
+		
+		airlineTextField.setText(selectedRes.getAirline());
+		airlineTextField.setEnabled(true);
+		
+		costTextField.setText(Double.toString(selectedRes.getCost()));
+		costTextField.setEnabled(true);
+		
+		nameTextField.setText(selectedRes.getName());
+		nameTextField.setEnabled(true);
+		
+		nameTextField.setText(selectedRes.getName());
+		nameTextField.setEnabled(true);
+		
+		citizenshipTextField.setText(selectedRes.getCitizenship());
+		citizenshipTextField.setEnabled(true);
+	
+		//add at the end, needs flight
+		
+		String weekday = "";
+		
+		Flight foundFlight = new Flight();
+		
+		//foundFlight = flightManager.findFlightByCode(selectedRes.getFlightCode());
+		foundFlight = flightManager.findFlightByCode("OA-9255"); //hardcode to test
+		weekday = foundFlight.getWeekday();
+		
+		dayTextField.setText(weekday);
+		dayTextField.setEnabled(true);
+		
 		
 		
 		
