@@ -1,4 +1,7 @@
 package sait.frms.problemdomain;
+import java.io.IOException;
+
+//import sait.frms.manager.*;
 
 public class Reservation {
 	private String code;
@@ -8,14 +11,14 @@ public class Reservation {
 	private String citizenship;
 	private double cost;
 	private boolean active;
-
+//private ReservationManager reservationManager;
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Reservation(String code, String flightCode, String airline, String name, String citizenship, double cost,
-			boolean active) {
+			boolean active) throws IOException {
 		super();
 		this.code = code;
 		this.flightCode = flightCode;
@@ -24,6 +27,8 @@ public class Reservation {
 		this.citizenship = citizenship;
 		this.cost = cost;
 		this.active = active;
+		//reservationManager = new ReservationManager();
+		//reservationManager.bookingConfirmation(this.code);
 	}
 
 	public String getCode() {

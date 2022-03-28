@@ -2,6 +2,8 @@
 package sait.frms.gui;
 
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -41,8 +43,9 @@ public class ReservationsTab extends TabBase {
 
 	/**
 	 * Creates the components for reservations tab.
+	 * @throws IOException 
 	 */
-	public ReservationsTab(ReservationManager reservationManager) {
+	public ReservationsTab(ReservationManager reservationManager) throws IOException {
 		this.reservationManager = reservationManager;
 		panel.setLayout(new BorderLayout());
 
@@ -56,7 +59,7 @@ public class ReservationsTab extends TabBase {
 		panel.add(tabPanel, BorderLayout.SOUTH);
 	}
 
-	private JPanel createCenterPanel() {
+	private JPanel createCenterPanel() throws IOException {
 		JPanel panel = new JPanel();
 
 		panel.setLayout(new BorderLayout());

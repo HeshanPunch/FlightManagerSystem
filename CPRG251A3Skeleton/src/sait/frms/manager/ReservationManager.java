@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import sait.frms.problemdomain.Flight;
 import sait.frms.problemdomain.Reservation;
 
@@ -80,6 +82,9 @@ public class ReservationManager extends FlightManager {
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
 		// this.raf.close();
+		
+		bookingConfirmation(code);
+		
 	}
 
 	private Reservation readReservation() throws IOException {
@@ -133,4 +138,9 @@ public class ReservationManager extends FlightManager {
 		return null;
 	}
 
+	public void bookingConfirmation(String code) {
+		String message = "Reservation confirmed, code: " + code;
+		JOptionPane.showMessageDialog(null, message);
+		
+	}
 }

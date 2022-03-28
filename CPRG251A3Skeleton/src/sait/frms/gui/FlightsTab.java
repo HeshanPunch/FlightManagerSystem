@@ -189,6 +189,10 @@ public class FlightsTab extends TabBase implements ActionListener {
 		 */
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
+			if (flightsList == null) {
+				return;
+			}
+			
 			Flight selectedFlight = flightsList.getSelectedValue();
 			MainWindow.changeCodePanel(selectedFlight);
 		}
