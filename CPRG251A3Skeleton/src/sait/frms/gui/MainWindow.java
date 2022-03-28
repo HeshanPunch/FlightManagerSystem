@@ -399,15 +399,15 @@ public class MainWindow extends JFrame {
 
 		if (selectedFlight != null) {
 
-			try {
-				flighTextField.setText(selectedFlight.getCode());
-				flighTextField.setEnabled(true);
-			} catch (Exception e) {
-				System.out.println("Error Line 418");
-			}
+			flighTextField.setText(selectedFlight.getCode());
+			flighTextField.setEnabled(true);
 
 			airlineTextField.setText(selectedFlight.getAirlineNameString());
 			airlineTextField.setEnabled(true);
+			
+			dayTextField.setText(selectedFlight.getWeekday());
+			dayTextField.setEnabled(true);
+			
 
 			costTextField.setText(Double.toString(selectedFlight.getCostPerSeat()));
 			costTextField.setEnabled(true);

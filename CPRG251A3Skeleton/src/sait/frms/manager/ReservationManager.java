@@ -47,13 +47,13 @@ public class ReservationManager extends FlightManager {
 		try {
 
 			if (f1.getSeats() == 0) {
-				System.out.println("No available seats!");
+				errorAlert("No available seats!");
 				throw new Exception("No seats");
 			} else if (name == null || name.contentEquals("")) {
-				System.out.println("Fill in with the name!");
+				errorAlert("Fill in with the name!");
 				throw new Exception("No name");
 			} else if (citizenship == null || citizenship.contentEquals("")) {
-				System.out.println("Fill in with the citizenship!");
+				errorAlert("Fill in with the citizenship!");
 				throw new Exception("No citizenship");
 			} else {
 				code = typeFlight + String.valueOf(random);
@@ -156,8 +156,14 @@ public class ReservationManager extends FlightManager {
 	}
 
 	public void bookingConfirmation(String code) {
-		String message = "Reservation confirmed, code: " + code;
+		String message = "Reservation confirmed - Code: " + code;
 		JOptionPane.showMessageDialog(null, message);
+		
+	}
+	
+	public void errorAlert(String error) {
+		;
+		JOptionPane.showMessageDialog(null, error);
 		
 	}
 }
