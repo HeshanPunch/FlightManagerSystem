@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.*;
 
 import sait.frms.problemdomain.Flight;
+import sait.frms.problemdomain.Reservation;
+import sait.frms.manager.ReservationManager;
 
 public class FlightManager {
 	public final String WEEKDAY_ANY = "Any";// not sure if this is what the class diagram means
@@ -47,11 +49,13 @@ public class FlightManager {
 		populateAirports();
 
 		// test
+		
+		
 		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
 		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
 
 
-		System.out.println("Flight with code 5943 is: " + findFlightByCode("TB-8477"));
+		/*System.out.println("Flight with code 5943 is: " + findFlightByCode("TB-8477"));*/
 
 
 		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));

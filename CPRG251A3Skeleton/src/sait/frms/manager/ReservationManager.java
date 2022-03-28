@@ -16,8 +16,9 @@ public class ReservationManager extends FlightManager {
 
 	public ReservationManager() throws IOException {
 		this.raf = new RandomAccessFile(BINARY_FILE, "rw");
-
-		//newReservationCode();
+		
+		//System.out.println(findByName("2Heshan"));
+		// newReservationCode();
 
 	}
 
@@ -31,7 +32,7 @@ public class ReservationManager extends FlightManager {
 		// System.out.println(random);
 		char typeFlight;
 		Flight f1 = findFlightByCode(flight); // Need to get this info from user
-		if (flight.charAt(0) == 'Y' && flight.charAt(0) == 'Y') {
+		if (flight.charAt(0) == 'Y' && flight.charAt(0) == 'Y') { //check -- repeat boolean check, both charAt(0)
 			typeFlight = 'D';
 		} else {
 			typeFlight = 'I';
@@ -119,7 +120,7 @@ public class ReservationManager extends FlightManager {
 		}
 		return null;
 	}
-	
+
 	public Reservation findByName(String name) throws IOException {
 		this.raf.seek(this.raf.length());
 
