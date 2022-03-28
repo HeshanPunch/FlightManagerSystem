@@ -9,7 +9,7 @@ import sait.frms.problemdomain.Reservation;
 
 public class ReservationManager extends FlightManager {
 
-	private static final int RES_SIZE = 194;
+	private static final int RES_SIZE = 193;
 
 	RandomAccessFile raf;
 	private static final String BINARY_FILE = "res/reservation.bin";
@@ -17,7 +17,7 @@ public class ReservationManager extends FlightManager {
 	public ReservationManager() throws IOException {
 		this.raf = new RandomAccessFile(BINARY_FILE, "rw");
 
-		//newReservationCode();
+		// newReservationCode();
 
 	}
 
@@ -27,38 +27,60 @@ public class ReservationManager extends FlightManager {
 	 * @throws IOException
 	 */
 	public void newReservationCode(String flight, String name, String citizenship) throws IOException {
+		
+		String code;
 		int random = 1000 + (int) (Math.random() * 9000);
 		// System.out.println(random);
 		char typeFlight;
 		Flight f1 = findFlightByCode(flight); // Need to get this info from user
-		if (flight.charAt(0) == 'Y' && flight.charAt(0) == 'Y') {
+		if (f1.getFrom().charAt(0) == 'Y' && f1.getTo().charAt(0) == 'Y') {
 			typeFlight = 'D';
 		} else {
 			typeFlight = 'I';
 		}
-		String code = typeFlight + String.valueOf(random);
-		String flightCode = flight;
-		String airline = f1.getAirlineNameString();
-		String passengerName = name; // Need to get this info from user
-		String passengerCitizenship = citizenship; // Need to get this info from user
-		double cost = f1.getCostPerSeat();
-		boolean available;
-		if (f1.getSeats() > 0) {
-			available = true;
-		} else {
-			available = false;
+		try {
+
+			if (f1.getSeats() == 0) {
+				System.out.println("No available seats!");
+				throw new Exception("No seats");
+			} else if (name == null || name.contentEquals("")) {
+				System.out.println("Fill in with the name!");
+				throw new Exception("No name");
+			} else if (citizenship == null || citizenship.contentEquals("")) {
+				System.out.println("Fill in with the citizenship!");
+				throw new Exception("No citizenship");
+			}else 
+			code = typeFlight + String.valueOf(random);
+			//String flightCode = flight;
+			String airline = f1.getAirlineNameString();
+			//String passengerName = name; // Need to get this info from user
+			//String passengerCitizenship = citizenship; // Need to get this info from user
+			double cost = f1.getCostPerSeat();
+			boolean available;
+			
+			Reservation r1 = new Reservation(code, flight, airline, name, citizenship, cost, true);
+			writeReservation(r1);
+			System.out.println(r1);
+				
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println("you are here");
 		}
 
-		Reservation r1 = new Reservation(code, flightCode, airline, passengerName, passengerCitizenship, cost,
-				available);
-		System.out.println(r1);
-		writeReservation(r1);
+		
+//		if (f1.getSeats() = 0) {
+//			available = true;
+//		} else {
+//			available = false;
+//		}
+
+		
 
 	}
 
 	private void writeReservation(Reservation r) throws IOException {
 
-		this.raf.seek(this.raf.length());
+		this.raf.seek(0);
 		String code = String.format("%-10s", r.getCode());// 10+2
 		this.raf.writeUTF(code);
 
@@ -109,7 +131,7 @@ public class ReservationManager extends FlightManager {
 	}
 
 	public Reservation findByCode(String code) throws IOException {
-		this.raf.seek(this.raf.length());
+		this.raf.seek(0);
 
 		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
 			Reservation reservation = this.readReservation();
@@ -119,9 +141,9 @@ public class ReservationManager extends FlightManager {
 		}
 		return null;
 	}
-	
+
 	public Reservation findByName(String name) throws IOException {
-		this.raf.seek(this.raf.length());
+		this.raf.seek(0);
 
 		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
 			Reservation reservation = this.readReservation();

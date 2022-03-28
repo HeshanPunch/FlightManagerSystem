@@ -29,8 +29,11 @@ public class AppDriver {
 		//FlightManager f1 = new FlightManager();
 		
 		ReservationManager r1 = new ReservationManager();
-		r1.newReservationCode("TB-8477", "Joe", "Canadian");
-		r1.findByName("Paolo");
+		//r1.newReservationCode("TB-8477", "Joe", "Canadian");
+		System.out.println(r1.findByCode("D1218"));
+		System.out.println(r1.findByName("Karen"));
+		
+		
 		
 		//Flight f5 = new Flight();
 
