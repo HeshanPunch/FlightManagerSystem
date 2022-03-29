@@ -99,13 +99,12 @@ public class ReservationManager extends FlightManager {
 
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
-<<<<<<< HEAD
-=======
+
 		// this.raf.close();
 		
 		bookingConfirmation(code);
 		
->>>>>>> refs/remotes/origin/master
+
 	}
 
 	private Reservation readReservation() throws IOException {
@@ -176,7 +175,7 @@ public class ReservationManager extends FlightManager {
 		return null;
 	}
 
-<<<<<<< HEAD
+
 	/*
 	 * public ArrayList<Reservation> findReservation(String code, String airline,
 	 * String name) throws IOException {
@@ -194,7 +193,7 @@ public class ReservationManager extends FlightManager {
 	 * }
 	 */
 
-=======
+
 	public void bookingConfirmation(String code) {
 		String message = "Reservation confirmed - Code: " + code;
 		JOptionPane.showMessageDialog(null, message);
@@ -206,5 +205,5 @@ public class ReservationManager extends FlightManager {
 		JOptionPane.showMessageDialog(null, error);
 		
 	}
->>>>>>> refs/remotes/origin/master
+
 }
