@@ -11,14 +11,14 @@ import sait.frms.problemdomain.Reservation;
 public class ReservationManager extends FlightManager {
 
 	private static final int RES_SIZE = 193;
-
+	private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 	RandomAccessFile raf;
 	private static final String BINARY_FILE = "res/reservation.bin";
 
 	public ReservationManager() throws IOException {
 		this.raf = new RandomAccessFile(BINARY_FILE, "rw");
 
-		//System.out.println(findByName("2Heshan"));
+		// System.out.println(findByName("2Heshan"));
 
 		// newReservationCode();
 
@@ -97,7 +97,6 @@ public class ReservationManager extends FlightManager {
 
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
-		
 	}
 
 	private Reservation readReservation() throws IOException {
@@ -118,23 +117,40 @@ public class ReservationManager extends FlightManager {
 
 	public ArrayList<Reservation> findReservation(String code, String airline, String name) throws IOException {
 		ArrayList<Reservation> reservation = new ArrayList<Reservation>();
-
-		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-			this.raf.seek(pos);
-			Reservation r1 = this.readReservation();
-			reservation.add(r1);
+		reservation.clear();
+		
+		for (Reservation r : reservations) {
+			if (r.getCode().equals(code) || r.getAirline().equals(airline) || r.getName().equals(name)) {
+				reservation.add(r);
+			}
+			
 		}
 		return reservation;
+		
+//		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
+//			this.raf.seek(pos);
+//			Reservation r1 = this.readReservation();
+//			reservation.add(r1);
+//
+//		}
+//		return reservation;
 	}
 
 	public Reservation findByCode(String code) throws IOException {
-		this.raf.seek(0);
+		
 
-		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-			Reservation reservation = this.readReservation();
-			if (reservation.getCode().equals(code)) {
-				return reservation;
+		for (Reservation r : reservations) {
+			if (r.getCode().equals(code)) {
+				return r;
 			}
+//		
+//		this.raf.seek(0);
+//
+//		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
+//			Reservation reservation = this.readReservation();
+//			if (reservation.getCode().equals(code)) {
+//				return reservation;
+//			}
 		}
 		return null;
 	}
@@ -150,21 +166,22 @@ public class ReservationManager extends FlightManager {
 		}
 		return null;
 	}
-	
-/*	public ArrayList<Reservation> findReservation(String code, String airline, String name) throws IOException {
-		
-		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-		reservations.clear();
-		
-		this.raf.seek(0);
 
-		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-			ArrayList<Reservation> reservation = this.readReservation();
-			if (reservation.getCode().equals(code) || reservation.getAirline().equals(airline) || reservation.getName().equals(name)) {
-				reservations.add(pos);
-			}
-		}
-		return null;
-	} */
+	/*
+	 * public ArrayList<Reservation> findReservation(String code, String airline,
+	 * String name) throws IOException {
+	 * 
+	 * ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	 * reservations.clear();
+	 * 
+	 * this.raf.seek(0);
+	 * 
+	 * for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
+	 * ArrayList<Reservation> reservation = this.readReservation(); if
+	 * (reservation.getCode().equals(code) ||
+	 * reservation.getAirline().equals(airline) ||
+	 * reservation.getName().equals(name)) { reservations.add(pos); } } return null;
+	 * }
+	 */
 
 }

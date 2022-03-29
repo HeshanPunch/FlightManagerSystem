@@ -30,9 +30,9 @@ public class AppDriver {
 		
 		ReservationManager r1 = new ReservationManager();
 		//r1.newReservationCode("TB-8477", "Joe", "Canadian");
-		System.out.println(r1.findByCode("D1218"));
-		System.out.println(r1.findByName("Karen"));
-		
+		System.out.println(r1.findByCode("D6323"));
+		System.out.println(r1.findByName("Leslie"));
+		System.out.println(r1.findReservation("D6413", "Vertical Airways", "Leslie"));
 		
 		
 		//Flight f5 = new Flight();
