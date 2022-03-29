@@ -70,6 +70,7 @@ public class FlightManager {
 	 */
 	public void populateFlights() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(FLIGHT_PATH));
+		int errors = 0;
 		while (in.hasNext()) {
 			String line = in.nextLine();
 			String[] fields = line.split(",");
@@ -89,7 +90,7 @@ public class FlightManager {
 			} else if (codeAirline[0].equals("VA")) {
 				airline = VERTICAL;
 			} else {
-				System.out.println("Invalid Flight Code " + codeAirline[0]);
+				errors++;
 				continue;
 			}
 
@@ -99,11 +100,11 @@ public class FlightManager {
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (InvalidFlightCodeException e) {
-				System.out.println("InvalidFlightCode " + fields[0]);
+				System.out.println("InvalidFlightCodes removed");
 				e.printStackTrace();
 			}
 		}
-
+		
 		in.close();
 
 	}
@@ -125,21 +126,7 @@ public class FlightManager {
 
 		}
 
-		// I think airports need to be stored in 1 line
-		/*
-		 * while (in.hasNextLine()) { String line = in.nextLine(); String[] fields =
-		 * line.split(","); for (int i = 0; i < fields.length; i++) {
-		 * airports.add(fields[i]); }
-		 * 
-		 */
-
 		in.close();
-
-		// for testing
-		// System.out.println(airports);
-		/*
-		 * for (String s : airports) { System.out.println(s); }
-		 */
 
 	}
 
@@ -160,7 +147,7 @@ public class FlightManager {
 	 * Finds the airport based on its code i.e. "YYC"
 	 * 
 	 * @param code
-	 * @return
+	 * @return matching airport
 	 */
 
 	@SuppressWarnings("unused")
@@ -186,7 +173,7 @@ public class FlightManager {
 	 * Find the Flight object based on the flight code passed
 	 * 
 	 * @param code
-	 * @return
+	 * @return matching flight
 	 */
 
 	public Flight findFlightByCode(String code) {
@@ -217,7 +204,6 @@ public class FlightManager {
 
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
-		String[] weekdays = getWeekdays();
 		System.out.println("findFlights");
 		matchingflights.clear();
 
@@ -225,23 +211,17 @@ public class FlightManager {
 			if (weekday.equals(WEEKDAY_ANY) && from.equalsIgnoreCase(flights.get(i).getFrom())
 					&& to.equalsIgnoreCase(flights.get(i).getTo())) {
 				matchingflights.add(flights.get(i));
-			} else if ((flights.get(i).getWeekday().equalsIgnoreCase(weekday) && from.equalsIgnoreCase(flights.get(i).getFrom()) && to.equalsIgnoreCase(flights.get(i).getTo()))) {
-				
-						matchingflights.add(flights.get(i));
-					}
+			} else if ((flights.get(i).getWeekday().equalsIgnoreCase(weekday)
+					&& from.equalsIgnoreCase(flights.get(i).getFrom())
+					&& to.equalsIgnoreCase(flights.get(i).getTo()))) {
 
-				}
+				matchingflights.add(flights.get(i));
+			}
 
-			
+		}
 
 		return matchingflights;
 
-	}
-
-	public String[] getWeekdays() {
-		String[] weekdays = { WEEKDAY_SUNDAY, WEEKDAY_MONDAY, WEEKDAY_TUESDAY, WEEKDAY_WEDNESDAY, WEEKDAY_THURSDAY,
-				WEEKDAY_FRIDAY, WEEKDAY_SATURDAY };
-		return weekdays;
 	}
 
 }

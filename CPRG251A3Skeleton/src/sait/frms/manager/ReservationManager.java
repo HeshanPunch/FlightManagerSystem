@@ -151,6 +151,8 @@ public class ReservationManager extends FlightManager {
 	 * @throws IOException
 	 */
 	public ArrayList<Reservation> findReservation(String code, String airline, String name) throws IOException {
+		System.out.println("Looking for..." + code + airline + name);
+		
 		ArrayList<Reservation> reservation = new ArrayList<Reservation>();
 		reservation.clear();
 
@@ -204,15 +206,17 @@ public class ReservationManager extends FlightManager {
 	 * @throws IOException
 	 */
 	public Reservation findByName(String name) throws IOException {
+	Reservation reservation = null;
 		this.raf.seek(0);
 
 		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-			Reservation reservation = this.readReservation();
+			reservation = this.readReservation();
 			if (reservation.getName().equals(name)) {
-				return reservation;
+				System.out.println("sending..." + reservation);
+				
 			}
 		}
-		return null;
+		return reservation;
 	}
 
 	/*
