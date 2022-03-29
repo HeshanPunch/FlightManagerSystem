@@ -1,0 +1,5 @@
+Project - Flight Management, CPRG251 Assignment 2
+2022-03-28
+Authors - Paolo Araujo, Heshan Punchihewa, Gukhee (Lauren) Sung
+This is a flight reservation management system with a function GUI. This is intended to read from a file of airports and flights, sort the data, use OOP principles, and write to a binary file to track the reservations.
+There are some try/catch error handling deficiencies compensated with 'Throwable'
