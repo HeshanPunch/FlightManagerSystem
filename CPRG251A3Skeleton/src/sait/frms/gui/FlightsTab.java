@@ -54,8 +54,6 @@ public class FlightsTab extends TabBase implements ActionListener {
 
 	private JButton findReservationsButton;
 
-
-
 	/**
 	 * Creates the components for flights tab.
 	 */
@@ -152,7 +150,9 @@ public class FlightsTab extends TabBase implements ActionListener {
 	private JPanel createSearchJPanel() {
 		JPanel searchJPanel = new JPanel();
 		String[] fromCity = flightManager.getAirportCodes();
-		String[] dayStrings = { flightManager.WEEKDAY_ANY };
+		String[] dayStrings = { flightManager.WEEKDAY_ANY, flightManager.WEEKDAY_SUNDAY, flightManager.WEEKDAY_MONDAY,
+				flightManager.WEEKDAY_TUESDAY, flightManager.WEEKDAY_WEDNESDAY, flightManager.WEEKDAY_THURSDAY,
+				flightManager.WEEKDAY_FRIDAY, flightManager.WEEKDAY_SATURDAY };
 
 		searchJPanel.setLayout(new GridLayout(3, 2));
 
@@ -192,7 +192,7 @@ public class FlightsTab extends TabBase implements ActionListener {
 			if (flightsList == null) {
 				return;
 			}
-			
+
 			Flight selectedFlight = flightsList.getSelectedValue();
 			MainWindow.changeCodePanel(selectedFlight);
 		}
@@ -202,9 +202,11 @@ public class FlightsTab extends TabBase implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == findFlightsButton) {
+			flightsModel.clear();
 			ArrayList<Flight> flightList = flightManager.findFlights(fromBox.getSelectedItem().toString(),
 					toBox.getSelectedItem().toString(), dayBox.getSelectedItem().toString());
-			flightsModel.clear();
+			
+			
 			for (Flight f : flightList) {
 				flightsModel.addElement(f);
 			}

@@ -404,10 +404,9 @@ public class MainWindow extends JFrame {
 
 			airlineTextField.setText(selectedFlight.getAirlineNameString());
 			airlineTextField.setEnabled(true);
-			
+
 			dayTextField.setText(selectedFlight.getWeekday());
 			dayTextField.setEnabled(true);
-			
 
 			costTextField.setText(Double.toString(selectedFlight.getCostPerSeat()));
 			costTextField.setEnabled(true);
@@ -443,10 +442,16 @@ public class MainWindow extends JFrame {
 		String weekday = "";
 
 		Flight foundFlight = new Flight();
+		try {
+			foundFlight = flightManager.findFlightByCode(selectedRes.getFlightCode());
 
-		// foundFlight = flightManager.findFlightByCode(selectedRes.getFlightCode());
-		foundFlight = flightManager.findFlightByCode("OA-9255"); // hardcode to test
-		weekday = foundFlight.getWeekday();
+			// foundFlight = flightManager.findFlightByCode("OA-9255"); // hardcode to test
+			weekday = foundFlight.getWeekday();
+		} catch (NullPointerException n) {
+			System.out.println("Can't find weekday for Flight");
+			return;
+
+		}
 
 		dayTextField.setText(weekday);
 		dayTextField.setEnabled(true);

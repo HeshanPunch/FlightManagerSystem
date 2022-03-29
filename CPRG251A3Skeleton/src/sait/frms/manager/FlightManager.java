@@ -9,7 +9,7 @@ import sait.frms.problemdomain.Reservation;
 import sait.frms.manager.ReservationManager;
 
 public class FlightManager {
-	public final String WEEKDAY_ANY = "Any";// not sure if this is what the class diagram means
+	public final String WEEKDAY_ANY = "Any";
 	public final String WEEKDAY_SUNDAY = "Sunday";
 	public final String WEEKDAY_MONDAY = "Monday";
 	public final String WEEKDAY_TUESDAY = "Tuesday";
@@ -217,24 +217,30 @@ public class FlightManager {
 
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
-		if (weekday.equals(WEEKDAY_ANY)) {
-			for (int i = 0; i < flights.size(); i++) {
-				if (from.equalsIgnoreCase(flights.get(i).getFrom()) && to.equalsIgnoreCase(flights.get(i).getTo())) {
-					matchingflights.add(flights.get(i));
-				} else if (from.equalsIgnoreCase(flights.get(i).getFrom())
-						&& to.equalsIgnoreCase(flights.get(i).getTo())
-						&& weekday.equalsIgnoreCase(flights.get(i).getWeekday())) {
-					matchingflights.add(flights.get(i));
+		String[] weekdays = getWeekdays();
+		System.out.println("findFlights");
+		matchingflights.clear();
+
+		for (int i = 0; i < flights.size(); i++) {
+			if (weekday.equals(WEEKDAY_ANY) && from.equalsIgnoreCase(flights.get(i).getFrom())
+					&& to.equalsIgnoreCase(flights.get(i).getTo())) {
+				matchingflights.add(flights.get(i));
+			} else if ((flights.get(i).getWeekday().equalsIgnoreCase(weekday) && from.equalsIgnoreCase(flights.get(i).getFrom()) && to.equalsIgnoreCase(flights.get(i).getTo()))) {
+				
+						matchingflights.add(flights.get(i));
+					}
+
 				}
-			}
-		}
+
+			
+
 		return matchingflights;
 
 	}
 
 	public String[] getWeekdays() {
-		String[] weekdays = { WEEKDAY_ANY, WEEKDAY_SUNDAY, WEEKDAY_MONDAY, WEEKDAY_TUESDAY, WEEKDAY_WEDNESDAY,
-				WEEKDAY_THURSDAY, WEEKDAY_FRIDAY, WEEKDAY_SATURDAY };
+		String[] weekdays = { WEEKDAY_SUNDAY, WEEKDAY_MONDAY, WEEKDAY_TUESDAY, WEEKDAY_WEDNESDAY, WEEKDAY_THURSDAY,
+				WEEKDAY_FRIDAY, WEEKDAY_SATURDAY };
 		return weekdays;
 	}
 
