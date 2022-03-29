@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import sait.frms.problemdomain.Flight;
+import sait.frms.problemdomain.InvalidFlightCodeException;
 import sait.frms.problemdomain.Reservation;
 import sait.frms.manager.ReservationManager;
 
@@ -17,12 +18,11 @@ public class FlightManager {
 	public final String WEEKDAY_FRIDAY = "Friday";
 	public final String WEEKDAY_SATURDAY = "Saturday";
 
-
 	public static final String OTTO = "Otto Airlines";
 	public static final String CONNED = "Conned Air";
 	public static final String TRY = "Try a Bus Airways";
 	public static final String VERTICAL = "Vertical Airways";
-
+	private Flight flight;
 	private ArrayList<Flight> flights = new ArrayList<Flight>();
 	private ArrayList<String> airports = new ArrayList<String>();
 
@@ -30,15 +30,13 @@ public class FlightManager {
 	final static String AIRPORT_PATH = "res/airports.csv";
 
 	public ArrayList<String> getAirports() {
-	return airports;
+		return airports;
 	}
 
-	
 	public ArrayList<Flight> getFlights() {
-	return flights;
+		return flights;
 	}
-	
-		
+
 	/**
 	 * FlightManager constructor class to run the rest of methods
 	 * 
@@ -49,14 +47,14 @@ public class FlightManager {
 		populateAirports();
 
 		// test
-		
-		
+
 		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
 		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
 
-
-		/*System.out.println("Flight with code 5943 is: " + findFlightByCode("TB-8477"));*/
-
+		/*
+		 * System.out.println("Flight with code 5943 is: " +
+		 * findFlightByCode("TB-8477"));
+		 */
 
 		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
 		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
@@ -77,31 +75,46 @@ public class FlightManager {
 			String[] fields = line.split(",");
 			String[] codeAirline = fields[0].split("-");
 			String airline = "";
-			if(codeAirline[0].equals("OA")) {
-				airline = OTTO;
-			}else if (codeAirline[0].equals("CA")) {
-				airline = CONNED;
-			}else if (codeAirline[0].equals("TB")) {
-				airline = TRY;
-			}else if (codeAirline[0].equals("VA")) {
-				airline = VERTICAL;
-			}
-				
-			flights.add(new Flight(fields[0], airline, fields[1], fields[2], fields[3], fields[4],
-					Integer.parseInt(fields[5]), Double.parseDouble(fields[6])));
 
+			/*
+			 * if(codeAirline.equals("OA") || codeAirline.equals("CA") ||
+			 * codeAirline.equals("TB" || codeAirline.equals("VA")) ) {
+			 */
+			if (codeAirline[0].equals("OA")) {
+				airline = OTTO;
+			} else if (codeAirline[0].equals("CA")) {
+				airline = CONNED;
+			} else if (codeAirline[0].equals("TB")) {
+				airline = TRY;
+			} else if (codeAirline[0].equals("VA")) {
+				airline = VERTICAL;
+			} else {
+				System.out.println("Invalid Flight Code " + codeAirline[0]);
+				continue;
+			}
+
+			try {
+				flights.add(new Flight(fields[0], airline, fields[1], fields[2], fields[3], fields[4],
+						Integer.parseInt(fields[5]), Double.parseDouble(fields[6])));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (InvalidFlightCodeException e) {
+				System.out.println("InvalidFlightCode " + fields[0]);
+				e.printStackTrace();
+			}
 		}
 
 		in.close();
 
-		// for testing
-		/*
-		 * for (Flight f : flights) { System.out.println(f); }
-		 */
 	}
 
-	/**
-	 * Populate the airports String arrayList
+	// for testing
+	/*
+	 * for (Flight f : flights) { System.out.println(f); }
+	 * 
+	 * }
+	 * 
+	 * /** Populate the airports String arrayList
 	 * 
 	 * @throws FileNotFoundException
 	 */
@@ -150,6 +163,7 @@ public class FlightManager {
 	 * @return
 	 */
 
+	@SuppressWarnings("unused")
 	private String findAirportByCode(String code) {
 		String airport = "";
 		code = code.toUpperCase();
@@ -191,7 +205,6 @@ public class FlightManager {
 
 	}
 
-
 	/**
 	 * Finds flights that match the from, to, and weekday passed, can be 0 or
 	 * multiple matches
@@ -219,12 +232,10 @@ public class FlightManager {
 
 	}
 
-
 	public String[] getWeekdays() {
 		String[] weekdays = { WEEKDAY_ANY, WEEKDAY_SUNDAY, WEEKDAY_MONDAY, WEEKDAY_TUESDAY, WEEKDAY_WEDNESDAY,
 				WEEKDAY_THURSDAY, WEEKDAY_FRIDAY, WEEKDAY_SATURDAY };
 		return weekdays;
 	}
-
 
 }

@@ -16,7 +16,7 @@ public class Flight {
 	}
 
 	public Flight(String code, String airlineNameString, String from, String to, String weekday, String timeString,
-			int seats, double costPerSeat) {
+			int seats, double costPerSeat) throws InvalidFlightCodeException {
 		
 		
 		
@@ -112,7 +112,8 @@ public class Flight {
 		}else if (airline == "CA") {
 			airlineNameString = "Vertical Airways";
 		}else throw new InvalidFlightCodeException();
-		this.code = code;
+		
+		setAirlineNameString(airlineNameString);
 
 	}
 
