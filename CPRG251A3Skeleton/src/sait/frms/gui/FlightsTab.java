@@ -107,14 +107,9 @@ public class FlightsTab extends TabBase implements ActionListener {
 		flightsModel = new DefaultListModel<>();
 		flightsList = new JList<>(flightsModel);
 
-		// testing
-		// String [] test = {"One", "Two", "Three"};
-		// flightsList = new JList<>(flightsModel);
 
-		// User can only select one item at a time.
 		flightsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		// Wrap JList in JScrollPane so it is scrollable.
 		JScrollPane scrollPane = new JScrollPane(this.flightsList);
 
 		flightsList.addListSelectionListener(new MyListSelectionListener());
@@ -135,9 +130,6 @@ public class FlightsTab extends TabBase implements ActionListener {
 		tabPanel.setLayout(new BorderLayout());
 		findFlightsButton = new JButton("Find Flights");
 
-		// WTF is going on here
-		// findFlightsButton.addActionListener(this);
-		// reservationsButton.addActionListener(new TabButtonActionListener());
 		header = new JLabel("Flight Finder");
 		header.setFont(new Font("serif", Font.PLAIN, 20));
 		tabPanel.add(header, BorderLayout.NORTH);
@@ -166,10 +158,7 @@ public class FlightsTab extends TabBase implements ActionListener {
 		findFlightsButton = new JButton("Find Flights");
 
 		findFlightsButton.addActionListener(this);
-		// reservationsButton.addActionListener(new TabButtonActionListener());
 
-		// tabPanel.add(findFlightsButton);
-		// tabPanel.add(reservationsButton);
 
 		searchJPanel.add(fromJLabel, BorderLayout.NORTH);
 		searchJPanel.add(fromBox);

@@ -2,7 +2,7 @@ package sait.frms.problemdomain;
 
 import java.io.IOException;
 
-//import sait.frms.manager.*;
+
 
 /**
  * 
@@ -18,7 +18,7 @@ public class Reservation {
 	private String citizenship;
 	private double cost;
 	private boolean active;
-//private ReservationManager reservationManager;
+
 
 	public Reservation() {
 		super();
@@ -47,8 +47,7 @@ public class Reservation {
 		this.citizenship = citizenship;
 		this.cost = cost;
 		this.active = active;
-		// reservationManager = new ReservationManager();
-		// reservationManager.bookingConfirmation(this.code);
+
 	}
 
 	/**

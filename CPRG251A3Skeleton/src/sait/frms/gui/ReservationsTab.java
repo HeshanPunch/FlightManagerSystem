@@ -80,10 +80,6 @@ public class ReservationsTab extends TabBase implements ActionListener {
 
 		JScrollPane scrollPane = new JScrollPane(this.reservationsList);
 
-		/*
-		 * //test reservationsModel.addElement(new Reservation("ABC", "FC", "AirCanada",
-		 * "Joe Test", "Canada", 222.0, true));
-		 */
 
 		reservationsList.addListSelectionListener(new MyListSelectionListener());
 		panel.add(scrollPane);
@@ -111,8 +107,6 @@ public class ReservationsTab extends TabBase implements ActionListener {
 		tabPanel.setLayout(new BorderLayout());
 		findReservationsButton = new JButton("Find Reservations");
 
-		// findFlightsButton.addActionListener(new TabButtonActionListener());
-		// reservationsButton.addActionListener(new TabButtonActionListener());
 		header = new JLabel("Search");
 		header.setFont(new Font("serif", Font.PLAIN, 20));
 		tabPanel.add(header, BorderLayout.NORTH);
@@ -136,13 +130,7 @@ public class ReservationsTab extends TabBase implements ActionListener {
 
 		findReservationsButton = new JButton("Find Reservations");
 		findReservationsButton.addActionListener(this);
-		// findReservationsButton.addActionListener(new TabButtonActionListener());
 
-		// flightsButton.addActionListener(new TabButtonActionListener());
-		// reservationsButton.addActionListener(new TabButtonActionListener());
-
-		// tabPanel.add(flightsButton);
-		// searchJPanel.add(findReservationsButton);
 
 		searchJPanel.add(codeLabel, BorderLayout.NORTH);
 		searchJPanel.add(codeField);
@@ -179,8 +167,7 @@ public class ReservationsTab extends TabBase implements ActionListener {
 				if (nameField.getText() != null) {
 
 					resFound = reservationManager.findByName(nameField.getText().toString());
-					//System.out.println("Search for... " + nameField.getText().toString());
-					//System.out.println("Found?... " + resFound);
+
 					reservationsModel.addElement(resFound);
 				}
 				// search by code
@@ -196,17 +183,6 @@ public class ReservationsTab extends TabBase implements ActionListener {
 			}
 		}
 
-		// reservationsArr.clear();
-		/*
-		 * try {
-		 * 
-		 * reservationsArr =
-		 * reservationManager.findReservation(codeField.getText().toString(),
-		 * airlineField.getText().toString(), nameField.getText().toString()); } catch
-		 * (IOException e1) { // TODO Auto-generated catch block e1.printStackTrace(); }
-		 * 
-		 * for (Reservation i : reservationsArr) { reservationsModel.addElement(i); }
-		 */
 
 	}
 

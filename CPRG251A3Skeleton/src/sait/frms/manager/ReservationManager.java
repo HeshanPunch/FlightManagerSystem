@@ -28,9 +28,6 @@ public class ReservationManager extends FlightManager {
 	public ReservationManager() throws IOException {
 		this.raf = new RandomAccessFile(BINARY_FILE, "rw");
 
-		// System.out.println(findByName("2Heshan"));
-
-		// newReservationCode();
 
 	}
 
@@ -43,9 +40,8 @@ public class ReservationManager extends FlightManager {
 
 		String code;
 		int random = 1000 + (int) (Math.random() * 9000);
-		// System.out.println(random);
 		char typeFlight;
-		Flight f1 = findFlightByCode(flight); // Need to get this info from user
+		Flight f1 = findFlightByCode(flight); 
 
 		if (f1.getFrom().charAt(0) == 'Y' && f1.getTo().charAt(0) == 'Y') {
 
@@ -66,10 +62,7 @@ public class ReservationManager extends FlightManager {
 				throw new Exception("No citizenship");
 			} else {
 				code = typeFlight + String.valueOf(random);
-				// String flightCode = flight;
 				String airline = f1.getAirlineNameString();
-				// String passengerName = name; // Need to get this info from user
-				// String passengerCitizenship = citizenship; // Need to get this info from user
 				double cost = f1.getCostPerSeat();
 				boolean available;
 
@@ -79,8 +72,8 @@ public class ReservationManager extends FlightManager {
 			}
 
 		} catch (Exception e) {
-			// e.printStackTrace();
-			System.out.println("you are here");
+			
+			System.out.println("No available seats");
 		}
 
 	}
@@ -113,8 +106,6 @@ public class ReservationManager extends FlightManager {
 
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
-		// this.raf.close();
-
 		bookingConfirmation(code);
 
 	}
@@ -136,7 +127,6 @@ public class ReservationManager extends FlightManager {
 		boolean available = this.raf.readBoolean();
 		Reservation reservation = new Reservation(code, flightCode, airline, name, citizenship, cost, available);
 
-		// this.raf.close();
 		return reservation;
 
 	}
@@ -164,13 +154,6 @@ public class ReservationManager extends FlightManager {
 		}
 		return reservation;
 
-//		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-//			this.raf.seek(pos);
-//			Reservation r1 = this.readReservation();
-//			reservation.add(r1);
-//
-//		}
-//		return reservation;
 	}
 
 	/**
@@ -186,14 +169,7 @@ public class ReservationManager extends FlightManager {
 			if (r.getCode().equals(code)) {
 				return r;
 			}
-//		
-//		this.raf.seek(0);
-//
-//		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-//			Reservation reservation = this.readReservation();
-//			if (reservation.getCode().equals(code)) {
-//				return reservation;
-//			}
+
 		}
 		return null;
 	}
@@ -219,22 +195,6 @@ public class ReservationManager extends FlightManager {
 		return reservation;
 	}
 
-	/*
-	 * public ArrayList<Reservation> findReservation(String code, String airline,
-	 * String name) throws IOException {
-	 * 
-	 * ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-	 * reservations.clear();
-	 * 
-	 * this.raf.seek(0);
-	 * 
-	 * for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
-	 * ArrayList<Reservation> reservation = this.readReservation(); if
-	 * (reservation.getCode().equals(code) ||
-	 * reservation.getAirline().equals(airline) ||
-	 * reservation.getName().equals(name)) { reservations.add(pos); } } return null;
-	 * }
-	 */
 
 	/**
 	 * Method to create a message to inform the reservation code

@@ -268,7 +268,6 @@ public class MainWindow extends JFrame {
 		status = new JLabel("Status");
 		statusJComboBox = new JComboBox(statusStrings);
 
-		// reserveButton = new JButton("Reserve");
 
 		codePanel.add(code);
 		codePanel.add(codeTextField);
@@ -286,7 +285,6 @@ public class MainWindow extends JFrame {
 		codePanel.add(citizenshipTextField);
 		codePanel.add(status);
 		codePanel.add(statusJComboBox);
-		// codePanel.add(reserveButton); //I added the reserve button
 
 		return codePanel;
 	}
@@ -312,39 +310,6 @@ public class MainWindow extends JFrame {
 
 		return tabPanel;
 	}
-
-	/**
-	 * Creates the tab buttons.
-	 * 
-	 * @return JPanel containing tab buttons.
-	 */
-	/*
-	 * private JPanel createSearchPanel() { JPanel tabPanel = new JPanel(); String[]
-	 * fromCity = { "YYC" }; String[] dayStrings = { "Any" };
-	 * 
-	 * tabPanel.setLayout(new GridLayout(5, 2));
-	 * 
-	 * flightsButton.addActionListener(new TabButtonActionListener());
-	 * reservationsButton.addActionListener(new TabButtonActionListener()); header =
-	 * new JLabel("Flight Finder", SwingConstants.CENTER); header.setFont(new
-	 * Font("serif", Font.PLAIN, 20)); fromJLabel = new JLabel("From",
-	 * SwingConstants.LEFT); tolJLabel = new JLabel("To", SwingConstants.LEFT);
-	 * dayJLabel = new JLabel("Day", SwingConstants.LEFT); fromBox = new
-	 * JComboBox(fromCity); toBox = new JComboBox(fromCity); dayBox = new
-	 * JComboBox(dayStrings);
-	 * 
-	 * //repeat?
-	 * 
-	 * //flightsButton.addActionListener(new TabButtonActionListener());
-	 * //reservationsButton.addActionListener(new TabButtonActionListener());
-	 * 
-	 * //tabPanel.add(flightsButton); //tabPanel.add(reservationsButton);
-	 * tabPanel.add(header); tabPanel.add(fromJLabel); tabPanel.add(fromBox);
-	 * tabPanel.add(tolJLabel); tabPanel.add(toBox); tabPanel.add(dayJLabel);
-	 * tabPanel.add(dayBox);
-	 * 
-	 * return tabPanel; }
-	 */
 
 	/**
 	 * Displays the JFrame window.
@@ -385,10 +350,7 @@ public class MainWindow extends JFrame {
 
 	// used to set the results on the East pane
 	public static void changeCodePanel(Flight selectedFlight) {
-		/*
-		 * //this is res code codeTextField.setText(selectedFlight.getCode());
-		 * codeTextField.setEnabled(true);
-		 */
+
 		codeTextField.setText("");
 		flighTextField.setText("");
 		airlineTextField.setText("");
@@ -445,7 +407,7 @@ public class MainWindow extends JFrame {
 		try {
 			foundFlight = flightManager.findFlightByCode(selectedRes.getFlightCode());
 
-			// foundFlight = flightManager.findFlightByCode("OA-9255"); // hardcode to test
+	
 			weekday = foundFlight.getWeekday();
 		} catch (NullPointerException n) {
 			System.out.println("Can't find weekday for Flight");

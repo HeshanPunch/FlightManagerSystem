@@ -46,20 +46,7 @@ public class FlightManager {
 		populateFlights();
 		populateAirports();
 
-		// test
 
-		// System.out.println("Airport code YYC is: " + findAirportByCode("YYC"));;
-		// System.out.println("Airport code pek is: " + findAirportByCode("pek") );
-
-		/*
-		 * System.out.println("Flight with code 5943 is: " +
-		 * findFlightByCode("TB-8477"));
-		 */
-
-		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
-		// System.out.println("Flight with code 5943 is: " + findFlightByCode("5943"));
-		// System.out.println("Flight from FRA to YYC on Friday: " + findFlights("DXB",
-		// "YVR", "Monday"));
 
 	}
 
@@ -77,10 +64,6 @@ public class FlightManager {
 			String[] codeAirline = fields[0].split("-");
 			String airline = "";
 
-			/*
-			 * if(codeAirline.equals("OA") || codeAirline.equals("CA") ||
-			 * codeAirline.equals("TB" || codeAirline.equals("VA")) ) {
-			 */
 			if (codeAirline[0].equals("OA")) {
 				airline = OTTO;
 			} else if (codeAirline[0].equals("CA")) {
@@ -109,7 +92,7 @@ public class FlightManager {
 
 	}
 
-	// for testing
+
 	/*
 	 * for (Flight f : flights) { System.out.println(f); }
 	 * 
@@ -130,14 +113,13 @@ public class FlightManager {
 
 	}
 
-	// I need this for GUI -- Heshan
 	public String[] getAirportCodes() {
 		String[] codes = new String[airports.size()];
 
 		for (int i = 0; i < airports.size(); i++) {
 			String airportRead = airports.get(i).substring(0, 3);
 			codes[i] = airportRead;
-			// System.out.println(airportRead);
+		
 		}
 
 		return codes;
