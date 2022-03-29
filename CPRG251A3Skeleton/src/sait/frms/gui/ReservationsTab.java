@@ -2,14 +2,14 @@
 package sait.frms.gui;
 
 import java.awt.*;
-<<<<<<< HEAD
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-=======
+
 import java.io.IOException;
->>>>>>> refs/remotes/origin/master
+
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
