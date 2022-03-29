@@ -10,6 +10,14 @@ import javax.swing.JOptionPane;
 import sait.frms.problemdomain.Flight;
 import sait.frms.problemdomain.Reservation;
 
+/**
+ * Reservation Manager class creates a Reservation code, finds and modifies a
+ * reservation.
+ * 
+ * @author Paolo Araujo, Lauren Sung, Heshan Punchihewa
+ * @version 2022-03-28
+ *
+ */
 public class ReservationManager extends FlightManager {
 
 	private static final int RES_SIZE = 193;
@@ -27,7 +35,7 @@ public class ReservationManager extends FlightManager {
 	}
 
 	/**
-	 * Create a new reservation code
+	 * Method to create a new reservation code and a new reservation
 	 * 
 	 * @throws IOException
 	 */
@@ -77,6 +85,12 @@ public class ReservationManager extends FlightManager {
 
 	}
 
+	/**
+	 * Method to write in random access file the reservations
+	 * 
+	 * @param r Reservation object
+	 * @throws IOException
+	 */
 	private void writeReservation(Reservation r) throws IOException {
 
 		this.raf.seek(this.raf.length());
@@ -99,14 +113,18 @@ public class ReservationManager extends FlightManager {
 
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
-
 		// this.raf.close();
-		
+
 		bookingConfirmation(code);
-		
 
 	}
 
+	/**
+	 * Method to read the reservations from the file
+	 * 
+	 * @return Reservation
+	 * @throws IOException
+	 */
 	private Reservation readReservation() throws IOException {
 		this.raf.seek(0);
 		String code = this.raf.readUTF().trim();
@@ -123,18 +141,27 @@ public class ReservationManager extends FlightManager {
 
 	}
 
+	/**
+	 * Method to populate an Array with reservations
+	 * 
+	 * @param code    Reservation code
+	 * @param airline Airline name
+	 * @param name    Customer name
+	 * @return Array of reservation
+	 * @throws IOException
+	 */
 	public ArrayList<Reservation> findReservation(String code, String airline, String name) throws IOException {
 		ArrayList<Reservation> reservation = new ArrayList<Reservation>();
 		reservation.clear();
-		
+
 		for (Reservation r : reservations) {
 			if (r.getCode().equals(code) || r.getAirline().equals(airline) || r.getName().equals(name)) {
 				reservation.add(r);
 			}
-			
+
 		}
 		return reservation;
-		
+
 //		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
 //			this.raf.seek(pos);
 //			Reservation r1 = this.readReservation();
@@ -144,8 +171,14 @@ public class ReservationManager extends FlightManager {
 //		return reservation;
 	}
 
+	/**
+	 * Method to search a reservation by code
+	 * 
+	 * @param code Reservation code
+	 * @return Reservation
+	 * @throws IOException
+	 */
 	public Reservation findByCode(String code) throws IOException {
-		
 
 		for (Reservation r : reservations) {
 			if (r.getCode().equals(code)) {
@@ -163,6 +196,13 @@ public class ReservationManager extends FlightManager {
 		return null;
 	}
 
+	/**
+	 * Method to search a reservation by customer name
+	 * 
+	 * @param name Customer name
+	 * @return reservation
+	 * @throws IOException
+	 */
 	public Reservation findByName(String name) throws IOException {
 		this.raf.seek(0);
 
@@ -174,7 +214,6 @@ public class ReservationManager extends FlightManager {
 		}
 		return null;
 	}
-
 
 	/*
 	 * public ArrayList<Reservation> findReservation(String code, String airline,
@@ -193,17 +232,21 @@ public class ReservationManager extends FlightManager {
 	 * }
 	 */
 
-
+	/**
+	 * Method to create a message to inform the reservation code
+	 * 
+	 * @param code reservation code
+	 */
 	public void bookingConfirmation(String code) {
 		String message = "Reservation confirmed - Code: " + code;
 		JOptionPane.showMessageDialog(null, message);
-		
+
 	}
-	
+
 	public void errorAlert(String error) {
 		;
 		JOptionPane.showMessageDialog(null, error);
-		
+
 	}
 
 }
