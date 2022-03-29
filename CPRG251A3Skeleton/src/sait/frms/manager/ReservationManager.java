@@ -1,6 +1,7 @@
 package sait.frms.manager;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
@@ -76,7 +77,7 @@ public class ReservationManager extends FlightManager {
 
 	private void writeReservation(Reservation r) throws IOException {
 
-		this.raf.seek(0);
+		this.raf.seek(this.raf.length());
 		String code = String.format("%-10s", r.getCode());// 10+2
 		this.raf.writeUTF(code);
 
@@ -96,7 +97,7 @@ public class ReservationManager extends FlightManager {
 
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
-		// this.raf.close();
+		
 	}
 
 	private Reservation readReservation() throws IOException {
@@ -115,7 +116,7 @@ public class ReservationManager extends FlightManager {
 
 	}
 
-	public ArrayList<Reservation> getAll() throws IOException {
+	public ArrayList<Reservation> findReservation(String code, String airline, String name) throws IOException {
 		ArrayList<Reservation> reservation = new ArrayList<Reservation>();
 
 		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
@@ -149,5 +150,21 @@ public class ReservationManager extends FlightManager {
 		}
 		return null;
 	}
+	
+/*	public ArrayList<Reservation> findReservation(String code, String airline, String name) throws IOException {
+		
+		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+		reservations.clear();
+		
+		this.raf.seek(0);
+
+		for (long pos = 0; pos < this.raf.length(); pos += RES_SIZE) {
+			ArrayList<Reservation> reservation = this.readReservation();
+			if (reservation.getCode().equals(code) || reservation.getAirline().equals(airline) || reservation.getName().equals(name)) {
+				reservations.add(pos);
+			}
+		}
+		return null;
+	} */
 
 }
