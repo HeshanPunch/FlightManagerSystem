@@ -95,7 +95,7 @@ public class MainWindow extends JFrame {
 
 	private JButton findReservationsButton;
 
-	//private JButton updateButton;
+	// private JButton updateButton;
 	private JButton reserveButton;
 
 	private JLabel code;
@@ -105,7 +105,7 @@ public class MainWindow extends JFrame {
 	private JLabel flight;
 
 	private static JTextField flighTextField;
-	
+
 	private static JTextField dayTextField;
 	private JLabel day;
 
@@ -183,8 +183,8 @@ public class MainWindow extends JFrame {
 
 		panel.setLayout(new BorderLayout());
 
-		//JPanel tabPanel = createSearchPanel();
-		//panel.add(tabPanel, BorderLayout.SOUTH);
+		// JPanel tabPanel = createSearchPanel();
+		// panel.add(tabPanel, BorderLayout.SOUTH);
 
 		return panel;
 	}
@@ -193,8 +193,9 @@ public class MainWindow extends JFrame {
 	 * Creates the center panel.
 	 * 
 	 * @return JPanel that goes in center.
+	 * @throws IOException
 	 */
-	private JPanel createCenterPanel() {
+	private JPanel createCenterPanel() throws IOException {
 		JPanel panel = new JPanel();
 
 		cardLayout = new CardLayout();
@@ -248,11 +249,11 @@ public class MainWindow extends JFrame {
 		flighTextField = new JTextField(10);
 		flighTextField.setEnabled(false);
 		airline = new JLabel("Airline");
-	
+
 		dayTextField = new JTextField(10);
 		dayTextField.setEnabled(false);
 		day = new JLabel("Day");
-		
+
 		airlineTextField = new JTextField(10);
 		airlineTextField.setEnabled(false);
 		cost = new JLabel("Cost");
@@ -266,11 +267,9 @@ public class MainWindow extends JFrame {
 		citizenship.setEnabled(true);
 		status = new JLabel("Status");
 		statusJComboBox = new JComboBox(statusStrings);
-		
-		//reserveButton = new JButton("Reserve");
-		
-		
-		
+
+		// reserveButton = new JButton("Reserve");
+
 		codePanel.add(code);
 		codePanel.add(codeTextField);
 		codePanel.add(flight);
@@ -287,7 +286,7 @@ public class MainWindow extends JFrame {
 		codePanel.add(citizenshipTextField);
 		codePanel.add(status);
 		codePanel.add(statusJComboBox);
-		//codePanel.add(reserveButton); //I added the reserve button
+		// codePanel.add(reserveButton); //I added the reserve button
 
 		return codePanel;
 	}
@@ -319,42 +318,33 @@ public class MainWindow extends JFrame {
 	 * 
 	 * @return JPanel containing tab buttons.
 	 */
-/*
-	private JPanel createSearchPanel() {
-		JPanel tabPanel = new JPanel();
-		String[] fromCity = { "YYC" };
-		String[] dayStrings = { "Any" };
-
-		tabPanel.setLayout(new GridLayout(5, 2));
-
-		flightsButton.addActionListener(new TabButtonActionListener());
-		reservationsButton.addActionListener(new TabButtonActionListener());
-		header = new JLabel("Flight Finder", SwingConstants.CENTER);
-		header.setFont(new Font("serif", Font.PLAIN, 20));
-		fromJLabel = new JLabel("From", SwingConstants.LEFT);
-		tolJLabel = new JLabel("To", SwingConstants.LEFT);
-		dayJLabel = new JLabel("Day", SwingConstants.LEFT);
-		fromBox = new JComboBox(fromCity);
-		toBox = new JComboBox(fromCity); 
-		dayBox = new JComboBox(dayStrings);
-
-		//repeat?
-	
-		//flightsButton.addActionListener(new TabButtonActionListener());
-		//reservationsButton.addActionListener(new TabButtonActionListener());
-
-		//tabPanel.add(flightsButton);
-		//tabPanel.add(reservationsButton);
-		tabPanel.add(header);
-		tabPanel.add(fromJLabel);
-		tabPanel.add(fromBox);
-		tabPanel.add(tolJLabel);
-		tabPanel.add(toBox);
-		tabPanel.add(dayJLabel);
-		tabPanel.add(dayBox);
-
-		return tabPanel;
-	}*/
+	/*
+	 * private JPanel createSearchPanel() { JPanel tabPanel = new JPanel(); String[]
+	 * fromCity = { "YYC" }; String[] dayStrings = { "Any" };
+	 * 
+	 * tabPanel.setLayout(new GridLayout(5, 2));
+	 * 
+	 * flightsButton.addActionListener(new TabButtonActionListener());
+	 * reservationsButton.addActionListener(new TabButtonActionListener()); header =
+	 * new JLabel("Flight Finder", SwingConstants.CENTER); header.setFont(new
+	 * Font("serif", Font.PLAIN, 20)); fromJLabel = new JLabel("From",
+	 * SwingConstants.LEFT); tolJLabel = new JLabel("To", SwingConstants.LEFT);
+	 * dayJLabel = new JLabel("Day", SwingConstants.LEFT); fromBox = new
+	 * JComboBox(fromCity); toBox = new JComboBox(fromCity); dayBox = new
+	 * JComboBox(dayStrings);
+	 * 
+	 * //repeat?
+	 * 
+	 * //flightsButton.addActionListener(new TabButtonActionListener());
+	 * //reservationsButton.addActionListener(new TabButtonActionListener());
+	 * 
+	 * //tabPanel.add(flightsButton); //tabPanel.add(reservationsButton);
+	 * tabPanel.add(header); tabPanel.add(fromJLabel); tabPanel.add(fromBox);
+	 * tabPanel.add(tolJLabel); tabPanel.add(toBox); tabPanel.add(dayJLabel);
+	 * tabPanel.add(dayBox);
+	 * 
+	 * return tabPanel; }
+	 */
 
 	/**
 	 * Displays the JFrame window.
@@ -380,85 +370,92 @@ public class MainWindow extends JFrame {
 				cardLayout.show(centerPanel, TAB_RESERVATIONS);
 			} else if (e.getSource() == reserveButton) {
 				try {
-					reservationManager.newReservationCode(flighTextField.getText(), nameTextField.getText(), citizenshipTextField.getText());
+					reservationManager.newReservationCode(flighTextField.getText(), nameTextField.getText(),
+							citizenshipTextField.getText());
+
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		}
 
-		
 	}
 
-	//used to set the results on the East pane
+	// used to set the results on the East pane
 	public static void changeCodePanel(Flight selectedFlight) {
-		/*//this is res code
-		codeTextField.setText(selectedFlight.getCode());
-		codeTextField.setEnabled(true);
-		*/
-		
-		
-		flighTextField.setText(selectedFlight.getCode());
-		flighTextField.setEnabled(true);
-		
-		
-		airlineTextField.setText(selectedFlight.getAirlineNameString());
-		airlineTextField.setEnabled(true);
-		
-		costTextField.setText(Double.toString(selectedFlight.getCostPerSeat()));
-		costTextField.setEnabled(true);
-		
-		
-		
+		/*
+		 * //this is res code codeTextField.setText(selectedFlight.getCode());
+		 * codeTextField.setEnabled(true);
+		 */
+		codeTextField.setText("");
+		flighTextField.setText("");
+		airlineTextField.setText("");
+		dayTextField.setText("");
+		costTextField.setText("");
+		nameTextField.setText("");
+		citizenshipTextField.setText("");
+
+		if (selectedFlight != null) {
+
+			flighTextField.setText(selectedFlight.getCode());
+			flighTextField.setEnabled(true);
+
+			airlineTextField.setText(selectedFlight.getAirlineNameString());
+			airlineTextField.setEnabled(true);
+
+			dayTextField.setText(selectedFlight.getWeekday());
+			dayTextField.setEnabled(true);
+
+			costTextField.setText(Double.toString(selectedFlight.getCostPerSeat()));
+			costTextField.setEnabled(true);
+		}
+
 	}
-	
+
 	public static void changeCodePanel(Reservation selectedRes) {
-		
+
 		codeTextField.setText(selectedRes.getCode());
 		codeTextField.setEnabled(true);
-	
-		
-		
+
 		flighTextField.setText(selectedRes.getFlightCode());
 		flighTextField.setEnabled(true);
-		
-		
+
 		airlineTextField.setText(selectedRes.getAirline());
 		airlineTextField.setEnabled(true);
-		
+
 		costTextField.setText(Double.toString(selectedRes.getCost()));
 		costTextField.setEnabled(true);
-		
+
 		nameTextField.setText(selectedRes.getName());
 		nameTextField.setEnabled(true);
-		
+
 		nameTextField.setText(selectedRes.getName());
 		nameTextField.setEnabled(true);
-		
+
 		citizenshipTextField.setText(selectedRes.getCitizenship());
 		citizenshipTextField.setEnabled(true);
-	
-		//add at the end, needs flight
-		
+
+		// add at the end, needs flight
+
 		String weekday = "";
-		
+
 		Flight foundFlight = new Flight();
-		
-		//foundFlight = flightManager.findFlightByCode(selectedRes.getFlightCode());
-		foundFlight = flightManager.findFlightByCode("OA-9255"); //hardcode to test
-		weekday = foundFlight.getWeekday();
-		
+		try {
+			foundFlight = flightManager.findFlightByCode(selectedRes.getFlightCode());
+
+			// foundFlight = flightManager.findFlightByCode("OA-9255"); // hardcode to test
+			weekday = foundFlight.getWeekday();
+		} catch (NullPointerException n) {
+			System.out.println("Can't find weekday for Flight");
+			return;
+
+		}
+
 		dayTextField.setText(weekday);
 		dayTextField.setEnabled(true);
-		
-		
-		
-		
+
 	}
-	
-	
-	
-	
+
 }

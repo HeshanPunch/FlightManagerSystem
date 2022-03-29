@@ -5,6 +5,8 @@ import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import sait.frms.problemdomain.Flight;
 import sait.frms.problemdomain.Reservation;
 
@@ -46,13 +48,13 @@ public class ReservationManager extends FlightManager {
 		try {
 
 			if (f1.getSeats() == 0) {
-				System.out.println("No available seats!");
+				errorAlert("No available seats!");
 				throw new Exception("No seats");
 			} else if (name == null || name.contentEquals("")) {
-				System.out.println("Fill in with the name!");
+				errorAlert("Fill in with the name!");
 				throw new Exception("No name");
 			} else if (citizenship == null || citizenship.contentEquals("")) {
-				System.out.println("Fill in with the citizenship!");
+				errorAlert("Fill in with the citizenship!");
 				throw new Exception("No citizenship");
 			} else {
 				code = typeFlight + String.valueOf(random);
@@ -97,6 +99,13 @@ public class ReservationManager extends FlightManager {
 
 		this.raf.writeBoolean(r.isActive());// 1 byte
 
+<<<<<<< HEAD
+=======
+		// this.raf.close();
+		
+		bookingConfirmation(code);
+		
+>>>>>>> refs/remotes/origin/master
 	}
 
 	private Reservation readReservation() throws IOException {
@@ -167,6 +176,7 @@ public class ReservationManager extends FlightManager {
 		return null;
 	}
 
+<<<<<<< HEAD
 	/*
 	 * public ArrayList<Reservation> findReservation(String code, String airline,
 	 * String name) throws IOException {
@@ -184,4 +194,17 @@ public class ReservationManager extends FlightManager {
 	 * }
 	 */
 
+=======
+	public void bookingConfirmation(String code) {
+		String message = "Reservation confirmed - Code: " + code;
+		JOptionPane.showMessageDialog(null, message);
+		
+	}
+	
+	public void errorAlert(String error) {
+		;
+		JOptionPane.showMessageDialog(null, error);
+		
+	}
+>>>>>>> refs/remotes/origin/master
 }

@@ -16,7 +16,10 @@ public class Flight {
 	}
 
 	public Flight(String code, String airlineNameString, String from, String to, String weekday, String timeString,
-			int seats, double costPerSeat) {
+			int seats, double costPerSeat) throws InvalidFlightCodeException {
+		
+		
+		
 		super();
 		this.code = code;
 		this.airlineNameString = airlineNameString;
@@ -96,10 +99,10 @@ public class Flight {
 		return false;
 	}
 
-	public void parseCode(String code) {
+	public void parseCode(String code) throws InvalidFlightCodeException {
 		
 		String airline = "" + code.charAt(0) + code.charAt(1);
-		
+			
 		if(airline == "OA") {
 			airlineNameString = "Otto Airlines";
 		}else if (airline == "CA") {
@@ -108,8 +111,9 @@ public class Flight {
 			airlineNameString = "Try a Bus Airways";
 		}else if (airline == "CA") {
 			airlineNameString = "Vertical Airways";
-		}
-		this.code = code;
+		}else throw new InvalidFlightCodeException();
+		
+		setAirlineNameString(airlineNameString);
 
 	}
 
