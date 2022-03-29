@@ -93,12 +93,8 @@ public class FlightManager {
 	}
 
 
-	/*
-	 * for (Flight f : flights) { System.out.println(f); }
-	 * 
-	 * }
-	 * 
-	 * /** Populate the airports String arrayList
+	
+	 /** Populate the airports String arrayList
 	 * 
 	 * @throws FileNotFoundException
 	 */
@@ -186,7 +182,7 @@ public class FlightManager {
 
 	public ArrayList<Flight> findFlights(String from, String to, String weekday) {
 		ArrayList<Flight> matchingflights = new ArrayList<Flight>();
-		System.out.println("findFlights");
+
 		matchingflights.clear();
 
 		for (int i = 0; i < flights.size(); i++) {
