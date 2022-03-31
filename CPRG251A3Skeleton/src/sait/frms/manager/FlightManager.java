@@ -75,7 +75,7 @@ public class FlightManager {
 			} else {
 				errors++;
 				continue;
-			}
+			}//skips the errors
 
 			try {
 				flights.add(new Flight(fields[0], airline, fields[1], fields[2], fields[3], fields[4],

@@ -80,7 +80,6 @@ public class ReservationsTab extends TabBase implements ActionListener {
 
 		JScrollPane scrollPane = new JScrollPane(this.reservationsList);
 
-
 		reservationsList.addListSelectionListener(new MyListSelectionListener());
 		panel.add(scrollPane);
 		return panel;
@@ -131,7 +130,6 @@ public class ReservationsTab extends TabBase implements ActionListener {
 		findReservationsButton = new JButton("Find Reservations");
 		findReservationsButton.addActionListener(this);
 
-
 		searchJPanel.add(codeLabel, BorderLayout.NORTH);
 		searchJPanel.add(codeField);
 		searchJPanel.add(airlineLabel);
@@ -151,7 +149,13 @@ public class ReservationsTab extends TabBase implements ActionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			Reservation selectedRes = reservationsList.getSelectedValue();
-			MainWindow.changeCodePanel(selectedRes);
+			try {
+				MainWindow.changeCodePanel(selectedRes);
+			} catch (NullPointerException npe) {
+				// TODO Auto-generated catch block
+				// npe.printStackTrace();
+				System.out.println("NullPointerException at Line: 159");
+			}
 		}
 
 	}
@@ -159,6 +163,7 @@ public class ReservationsTab extends TabBase implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == findReservationsButton) {
+			System.out.println("Pushed findReservationsButton");
 			reservationsModel.clear();
 			Reservation resFound = null;
 			System.out.println(codeField.getText().toString());
@@ -167,7 +172,7 @@ public class ReservationsTab extends TabBase implements ActionListener {
 				if (nameField.getText() != null) {
 
 					resFound = reservationManager.findByName(nameField.getText().toString());
-
+					System.out.println(resFound);
 					reservationsModel.addElement(resFound);
 				}
 				// search by code
@@ -182,7 +187,6 @@ public class ReservationsTab extends TabBase implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-
 
 	}
 
