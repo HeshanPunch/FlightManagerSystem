@@ -25,5 +25,6 @@
 
 * There are some try/catch error handling deficiencies compensated with 'Throwable'
 
+### Limitations
 We struggled to solve some of the errors/exceptions because of how much time it took to solve the GUI/Swing challenges. We learned a lot and the challenge took us over 2 weeks working on the assignment alongside other assignments in the semester.
 
