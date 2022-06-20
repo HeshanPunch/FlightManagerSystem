@@ -1,7 +1,7 @@
 # Project - Flight Management, CPRG251 Assignment 2
 ### Authors - Paolo Araujo, Heshan Punchihewa, Gukhee (Lauren) Sung
 
-* Skeleton for the main GUI components were provided. We implemented action listeners, missing functions.
+* Skeleton for the main GUI components was provided. We implemented action listeners, missing functions.
 
 * This is a flight reservation management system with a functional GUI using Java Swing. This is intended to read from a (CSV) file of airports and flights, sort the data, use OOP principles(creat flight objects), and #write to a binary file to track the reservations.
 
